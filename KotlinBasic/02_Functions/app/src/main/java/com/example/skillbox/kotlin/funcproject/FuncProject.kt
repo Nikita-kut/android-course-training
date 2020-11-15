@@ -1,21 +1,17 @@
 package com.example.skillbox.kotlin.funcproject
 
+import kotlin.math.sqrt
+
 fun main() {
-print(multiply(b = 5))
-    print(hasChildAccess(height = 180, weight = 50, age = 13))
-    print(functionReturnAny())
+val solutionSum = solveEquation(a=2,b=8,c=3)
+    println("Сумма корней = $solutionSum")
 }
 
-fun multiply (a: Int=100, b: Int): Int {
-    return a * b
+fun solveEquation (a: Int, b: Int, c: Int): Double {
+    val d: Double = (b*b-4*a*c).toDouble()//расчёт дискриминанта//
+    val x1 = ((-b+sqrt(d))/2*a)//расчёт х1
+    val x2 = ((-b- sqrt(d))/2*a)//расчёт х2
+    return x1+x2
 }
 
-fun hasChildAccess (height: Int, weight: Int, age: Int): Boolean {
-    return height > 150 && weight > 30 && age > 10
-}
 
-fun functionReturnAny (): Any {
-return "dsd"
-вывыв
-    sff
-}
