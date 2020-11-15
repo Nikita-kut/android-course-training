@@ -16,5 +16,6 @@ fun hasChildAccess (height: Int, weight: Int, age: Int): Boolean {
 
 fun functionReturnAny (): Any {
 return "dsd"
-
+вывыв
+    sff
 }
