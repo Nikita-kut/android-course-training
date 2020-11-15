@@ -1,0 +1,2 @@
+include ':Homework'
+project(':Homework').projectDir = new File(rootDir, '01_BasicSyntax/Homework/')
