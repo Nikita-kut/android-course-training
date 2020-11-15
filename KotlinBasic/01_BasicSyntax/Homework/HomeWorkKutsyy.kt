@@ -11,7 +11,7 @@ fun main() {
         isChild = true
     }
 
-    val info = """
+    var info = """
         Name: $firstName
         Last Name: $lastName
         Height: $height
@@ -20,5 +20,12 @@ fun main() {
     """.trimIndent()
     println(info)
     height = 190
-    println(height)
+    info = """
+        Name: $firstName
+        Last Name: $lastName
+        Height: $height
+        Weight: $weight
+        He is: ${if (isChild) "Child" else "Adult"}
+    """
+    println(info)
 }
