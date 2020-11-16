@@ -14,7 +14,7 @@ fun solveEquation (a: Int, b: Int, c: Int): String {
     return if (d<0) {
         "Уравнение не имеет корней"
     } else if (d=0) {
-        (x1).toString()
+        (x2).toString()
     }
     else {
         (x1 + x2).toString()
