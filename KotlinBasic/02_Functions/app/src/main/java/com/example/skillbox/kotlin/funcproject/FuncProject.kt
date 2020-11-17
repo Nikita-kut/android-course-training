@@ -6,6 +6,7 @@ fun main() {
 fun solveEquation2 (a: Int, b: Int, c: Int): Double? {
     val d: Double = (b * b - (4 * a * c)).toDouble()
     return when { a<0.0 -> null
+            d==0.0 -> ((-b - sqrt(d.toDouble())) / 2 * a)
         else -> {
             val x1: Double = ((-b + sqrt(d.toDouble())) / 2 * a)//расчёт х1
             val x2: Double = ((-b - sqrt(d.toDouble())) / 2 * a)//расчёт х2
