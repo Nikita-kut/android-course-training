@@ -6,15 +6,17 @@ fun main() {
     println("Вы ввели число $n")
     println("Введите ещё $n чисел")
     var i = 0
-    //while (i<=n) {
-    //    println("Ввод: ")
-     //   readLine()?.toIntOrNull() ?: continue
-     //   i++
-    //}
-    for (i in 1..n) {
+    var k = 0
+    var sum = 0
+    while (i < n) {
         println("Ввод: ")
-        readLine()?.toIntOrNull() ?: continue
+        val j = readLine()?.toIntOrNull() ?: continue
+        sum = sum+j
+        i++
+        if (j>=0) k++
     }
+    println("Положительных чисел введено: $k")
+    println("Сумма введенных чисел: $sum")
 }
 
 
