@@ -3,7 +3,7 @@ package com.example.skillbox.kotlin.funcproject
 import kotlin.math.sqrt
 
 fun main() {
-    val result = solveEquation(a = 500, b = 15, c = 1)
+    val result = solveEquation(a = 5, b = 15, c = 1)
     println(if (result == null) "Уравнение не имеет корней" else "Сумма корней: $result")
 }
 
