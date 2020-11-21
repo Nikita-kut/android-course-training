@@ -5,11 +5,11 @@ fun main() {
     val n = readLine()?.toIntOrNull() ?: return
     println("Вы ввели число $n")
     println("Введите ещё $n чисел")
-    val newN = readLine()?.toIntOrNull()?: return
-
+    val number = 6
+    while (number<=n) {
+        println("Ввод: ")
+        readLine()?.toIntOrNull() ?: return
+    }
 }
-fun circle(newN: Int):Long {
 
-
-}
 
