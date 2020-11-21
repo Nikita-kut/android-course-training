@@ -5,10 +5,15 @@ fun main() {
     val n = readLine()?.toIntOrNull() ?: return
     println("Вы ввели число $n")
     println("Введите ещё $n чисел")
-    val number = 6
-    while (number<=n) {
+    var i = 0
+    //while (i<=n) {
+    //    println("Ввод: ")
+     //   readLine()?.toIntOrNull() ?: continue
+     //   i++
+    //}
+    for (i in 1..n) {
         println("Ввод: ")
-        readLine()?.toIntOrNull() ?: return
+        readLine()?.toIntOrNull() ?: continue
     }
 }
 
