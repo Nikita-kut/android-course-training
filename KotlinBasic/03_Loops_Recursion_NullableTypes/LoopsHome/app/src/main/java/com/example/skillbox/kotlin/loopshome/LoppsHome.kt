@@ -11,7 +11,7 @@ fun main() {
     while (i < n) {
         println("Ввод: ")
         val j = readLine()?.toIntOrNull() ?: continue
-        sum = sum+j
+        sum +=j
         i++
         if (j>=0) k++
     }
