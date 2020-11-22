@@ -19,11 +19,12 @@ fun main() {
     //  }
     for (current in 1..n) {
         println("Ввод: ")
-        val j = readLine()?.toIntOrNull() ?: continue
-        while (j == null) {
+        var j = readLine()?.toIntOrNull()
+        while (j==null) {
             println("Ввод: ")
-            readLine()?. toIntOrNull() ?: break
+           j = readLine()?. toIntOrNull() ?: break
         }
+        continue
     }
     println("Положительных чисел введено: $k")
     println("Сумма введенных чисел: $sum")
