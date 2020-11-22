@@ -24,6 +24,8 @@ fun main() {
             println("Ввод: ")
            j = readLine()?. toIntOrNull() ?: break
         }
+        if (j!=null) sum+=j
+        if (j!! >= 0 && j!=null) k++
         continue
     }
     println("Положительных чисел введено: $k")
