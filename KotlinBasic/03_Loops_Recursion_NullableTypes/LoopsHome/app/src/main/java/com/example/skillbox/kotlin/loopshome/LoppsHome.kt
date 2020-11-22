@@ -24,8 +24,13 @@ fun main() {
             println("Ввод: ")
            j = readLine()?. toIntOrNull() ?: break
         }
+        var current = 0
+        if (j!=null) current+=j
         if (j!=null) sum+=j
-        if (j!! >= 0 && j!=null) k++
+        while (j!=null) {
+            if (j>=0) k++
+            break
+        }
         continue
     }
     println("Положительных чисел введено: $k")
