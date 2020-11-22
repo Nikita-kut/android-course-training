@@ -20,11 +20,9 @@ fun main() {
     for (current in 1..n) {
         println("Ввод: ")
         val j = readLine()?.toIntOrNull() ?: continue
-        if (continue) {
-            for (j in 1..n) {
-                println("Ввод: ")
-                readLine()?.toIntOrNull() ?: break
-            }
+        while (j == null) {
+            println("Ввод: ")
+            readLine()?. toIntOrNull() ?: break
         }
     }
     println("Положительных чисел введено: $k")
