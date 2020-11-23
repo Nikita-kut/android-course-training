@@ -20,17 +20,12 @@ fun main() {
     for (current in 1..n) {
         println("Ввод: ")
         var j = readLine()?.toIntOrNull()
-        while (j==null) {
+        while (j == null) {
             println("Ввод: ")
-           j = readLine()?. toIntOrNull() ?: break
+            j = readLine()?.toIntOrNull() ?: continue
         }
-        var current = 0
-        if (j!=null) current+=j
-        if (j!=null) sum+=j
-        while (j!=null) {
-            if (j>=0) k++
-            break
-        }
+        sum += j
+        if (j >= 0) k++
         continue
     }
     println("Положительных чисел введено: $k")
