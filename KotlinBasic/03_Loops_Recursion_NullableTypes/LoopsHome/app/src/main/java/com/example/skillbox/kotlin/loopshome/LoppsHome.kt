@@ -26,7 +26,6 @@ fun main() {
         }
         sum += j
         if (j >= 0) k++
-        continue
     }
     println("Положительных чисел введено: $k")
     println("Сумма введенных чисел: $sum")
