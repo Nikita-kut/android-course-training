@@ -5,11 +5,12 @@ fun main() {
 
     with(animal) {
         while (isTooOld) {
-            if (isTooOld) {
-                sleep()
-                eat()
-                move()
-            } else makeChild()
+            eat()
+            sleep()
+            move()
+            if (!isTooOld) {
+                makeChild()
+            }
         }
     }
 }
