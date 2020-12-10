@@ -1,16 +1,13 @@
 package com.example.skillbox.kotlin.classes.home
 
 fun main() {
-    val animal = Animal("Doggie", 15, 5, 5)
-
-    with(animal) {
-        while (isTooOld) {
-            eat()
-            sleep()
-            move()
-            if (!isTooOld) {
-                makeChild()
-            }
+    var animal = Animal("Animal", 15, 5, 5)
+    while (!animal.isTooOld) {
+        animal.eat()
+        animal.sleep()
+        animal.move()
+        if (animal.isTooOld) {
+            animal = animal.makeChild()
         }
     }
 }

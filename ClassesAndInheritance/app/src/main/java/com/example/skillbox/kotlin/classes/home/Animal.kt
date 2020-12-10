@@ -2,12 +2,13 @@ package com.example.skillbox.kotlin.classes.home
 
 import kotlin.random.Random
 
-class Animal constructor(
+open class Animal constructor(
         val name: String,
         energy: Int,
         weight: Int,
         private val maxAge: Int
 ) {
+   
     var energy = energy
         private set
 
@@ -18,10 +19,10 @@ class Animal constructor(
         private set
 
     val isTooOld: Boolean
-        get() = age <= maxAge
+        get() = age >= maxAge
 
     fun sleep() {
-        if (energy <= 5) {
+        if (!isTooOld) {
             energy += 5
             age += 1
             println("$name is sleep")
@@ -33,7 +34,7 @@ class Animal constructor(
     }
 
     fun eat() {
-        if (energy <= 5) {
+        if (!isTooOld) {
             energy += 3
             weight += 1
             incrementAgeSometimes()
@@ -41,8 +42,8 @@ class Animal constructor(
         }
     }
 
-    fun move() {
-        if (energy >= 5 && weight > 0) {
+    open fun move() {
+        if (energy >= 5 && weight > 0 && !isTooOld) {
             energy -= 5
             weight -= 1
             incrementAgeSometimes()
@@ -50,10 +51,12 @@ class Animal constructor(
         }
     }
 
-    fun makeChild() {
-        energy = (1..100).random()
-        weight = (1..5).random()
-        println("$name is reborn, maxAge = $maxAge, energy = $energy, weight = $weight")
+    open fun makeChild(): Animal {
+        val newEnergy = (1..100).random()
+        val newWeight = (1..5).random()
+        val newAnimal = Animal(name, newEnergy, newWeight, maxAge)
+        println("$name is reborn, maxAge = $maxAge, energy = $newEnergy, weight = $newWeight")
+        return newAnimal
     }
 }
 
