@@ -2,13 +2,13 @@ package com.example.skillbox.kotlin.classes.home
 
 import kotlin.random.Random
 
-open class Animal constructor(
+abstract class Animal constructor(
         val name: String,
         energy: Int,
         weight: Int,
-        private val maxAge: Int
-) {
-   
+        maxAge: Int
+) : AgedAnimal(maxAge) {
+
     var energy = energy
         private set
 
@@ -54,7 +54,9 @@ open class Animal constructor(
     open fun makeChild(): Animal {
         val newEnergy = (1..100).random()
         val newWeight = (1..5).random()
-        val newAnimal = Animal(name, newEnergy, newWeight, maxAge)
+        val newAnimal = object: Animal(name, newEnergy, newWeight, this.maxAge) {
+            override fun makeSound() {}
+        }
         println("$name is reborn, maxAge = $maxAge, energy = $newEnergy, weight = $newWeight")
         return newAnimal
     }

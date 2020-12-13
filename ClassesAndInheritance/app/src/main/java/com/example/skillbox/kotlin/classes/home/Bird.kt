@@ -4,10 +4,18 @@ class Bird(name: String, energy: Int, weight: Int, maxAge: Int): Animal(name, en
 
     override fun move() {
         super.move()
-        println("Fly")
+        println("Flying")
     }
 
     override fun makeChild(): Bird {
-        return super.makeChild() as Bird
+        val newEnergy = (1..100).random()
+        val newWeight = (1..5).random()
+        val newBird = Bird(name, newEnergy, newWeight, maxAge)
+        println("$name is reborn, maxAge = $maxAge, energy = $newEnergy, weight = $newWeight")
+        return newBird
+    }
+
+    override fun makeSound() {
+        println("Chirp-chirp")
     }
 }
