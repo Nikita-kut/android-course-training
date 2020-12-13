@@ -54,9 +54,7 @@ abstract class Animal constructor(
     open fun makeChild(): Animal {
         val newEnergy = (1..100).random()
         val newWeight = (1..5).random()
-        val newAnimal = object: Animal(name, newEnergy, newWeight, this.maxAge) {
-            override fun makeSound() {}
-        }
+        val newAnimal = object: Animal(name, newEnergy, newWeight, this.maxAge) {}
         println("$name is reborn, maxAge = $maxAge, energy = $newEnergy, weight = $newWeight")
         return newAnimal
     }

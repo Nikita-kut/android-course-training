@@ -1,6 +1,6 @@
 package com.example.skillbox.kotlin.classes.home
 
-class Dog(name: String, energy: Int, weight: Int, maxAge: Int) : Animal(name, energy, weight, maxAge) {
+class Dog(name: String, energy: Int, weight: Int, maxAge: Int) : Animal(name, energy, weight, maxAge), Soundable {
 
     override fun move() {
         super.move()

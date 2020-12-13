@@ -14,6 +14,4 @@ class Fish(name: String, energy: Int, weight: Int, maxAge: Int) : Animal(name, e
         println("$name is reborn, maxAge = $maxAge, energy = $newEnergy, weight = $newWeight")
         return newFish
     }
-
-    override fun makeSound() {}
 }
