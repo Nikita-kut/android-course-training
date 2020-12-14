@@ -58,6 +58,13 @@ abstract class Animal constructor(
         println("$name is reborn, maxAge = $maxAge, energy = $newEnergy, weight = $newWeight")
         return newAnimal
     }
+
+    override fun toString(): String {
+        return "Name = $name, energy = $energy, weight = $weight, maxAge = $maxAge"
+    }
+
+
+
 }
 
 

@@ -1,9 +1,8 @@
 package com.example.skillbox.kotlin.classes.home
 
+import kotlin.random.Random
+
 fun main() {
-    val zooList = Zoo ("ZooList", 1,1,1)
-
-    zooList.makeZooList().forEach { println(it) }
-
-
+    val zooList = Zoo()
+    zooList.randomDo(zooList.makeZooList())
 }
