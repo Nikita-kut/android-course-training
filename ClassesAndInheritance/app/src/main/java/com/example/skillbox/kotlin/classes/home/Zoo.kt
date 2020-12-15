@@ -13,25 +13,25 @@ class Zoo() {
         return zooList
     }
 
-    fun randomDo(makeZooList: MutableList<Animal>) {
-        println("Start zoo size is ${makeZooList.size}")
-        val deathAnimal = mutableListOf<Animal>()
+    fun randomDo(list: MutableList<Animal>) {
+        println("Start zoo size is ${list.size}")
+        val youngAnimal = mutableListOf<Animal>()
         for (current in 1..5) {
-            makeZooList().forEach {
+            list.forEach {
                 when (if (it is Soundable) Random.nextInt(1, 6) else Random.nextInt(1, 5)) {
                     1 -> it.eat()
                     2 -> it.sleep()
                     3 -> it.move()
-                    4 -> makeZooList.add(it.makeChild())
+                    4 -> youngAnimal.add(it.makeChild())
                     5 -> if (it is Soundable) it.makeSound()
                 }
-                if (makeZooList.size == 0) return println("Zoo is die")
-                if (it.isTooOld) deathAnimal.add(it)
+                if (list.size == 0) return println("Zoo is die")
             }
+            list.addAll(youngAnimal)
         }
-        println("Zoo size is ${makeZooList.size}")
-        println("DeathAnimal size is ${deathAnimal.size}")
-        makeZooList.removeAll (deathAnimal)
-        println("Final zoo size is ${makeZooList.size}")
+        println("Zoo size is ${list.size}")
+        list.removeAll { it.isTooOld }
+        println("Die animal is remove")
+        println("Final zoo size is ${list.size}")
     }
 }
