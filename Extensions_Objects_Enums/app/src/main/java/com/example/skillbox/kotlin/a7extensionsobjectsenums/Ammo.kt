@@ -5,8 +5,8 @@ import kotlin.random.nextInt
 
 enum class Ammo(
         val damage: Int,
-        val chanceOfCriticalDamage: Int,
-        val coefOfCriticalDamage: Int
+        private val chanceOfCriticalDamage: Int,
+        private val coefOfCriticalDamage: Int
 ) {
     PISTOLPATRON(damage = 5, chanceOfCriticalDamage = 15, coefOfCriticalDamage = 2),
     AUTOMATONPATRON(damage = 7, chanceOfCriticalDamage = 10, coefOfCriticalDamage = 3),

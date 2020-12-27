@@ -38,3 +38,28 @@ abstract class AbstractWarrior(
 
     }
 }
+
+class Soldier(
+        val pistol: AbstractWeapon = Weapons.createPistol()
+) : AbstractWarrior(maxHealth = 50, missChance = 15, hitChance = 60, weapon = pistol) {
+
+}
+
+class Corporal(
+        val automaton: AbstractWeapon = Weapons.createAutomaton()
+) : AbstractWarrior(maxHealth = 75, missChance = 20, hitChance = 70, weapon = automaton) {
+
+}
+
+class Captain(
+        val shotGun: AbstractWeapon = Weapons.createShotGun()
+) : AbstractWarrior(maxHealth = 90, missChance = 25, hitChance = 80, weapon = shotGun) {
+
+}
+
+class Major(
+        val grenadeGun: AbstractWeapon = Weapons.createGrenadeGun()
+) : AbstractWarrior(maxHealth = 100, missChance = 30, hitChance = 90, weapon = grenadeGun) {
+
+}
+
