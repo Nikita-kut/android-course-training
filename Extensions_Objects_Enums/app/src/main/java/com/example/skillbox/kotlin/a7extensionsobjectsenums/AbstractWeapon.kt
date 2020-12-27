@@ -16,30 +16,55 @@ abstract class AbstractWeapon(
     fun recharge() {
         if (!isAmmo) {
             for (current in 0..maxAmmo) {
-                currentListAmmo.plus(listOf(makeAmmo()))
+                if (currentListAmmo.size > maxAmmo) {
+                    currentListAmmo.size == maxAmmo
+                    break
+                } else {
+                    currentListAmmo.plus(listOf(makeAmmo()))
+                }
             }
         }
     }
 
     fun getAmmoForShot(needAmmo: Int): List<Ammo> {
-        val ammoForShort: List<Ammo> = mutableListOf()
+        val ammoForShot: List<Ammo> = mutableListOf()
 
         for (current in 0..needAmmo) {
-            if (isAmmo && currentListAmmo.size >= needAmmo) {
+            if (isAmmo && currentListAmmo.size <= maxAmmo) {
                 when (this.fireType) {
                     FireType.SingleFire -> {
-                        ammoForShort.take(1)
+                        ammoForShot.take(1)
                         currentListAmmo.drop(1)
                     }
                     FireType.LineFire(lineSize = 5) -> {
-                        ammoForShort.take(needAmmo)
-                        currentListAmmo.drop(needAmmo)
+                        ammoForShot.take(5)
+                        currentListAmmo.drop(5)
                     }
                     else -> recharge()
                 }
             }
         }
-        return ammoForShort
+        return ammoForShot
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as AbstractWeapon
+
+        if (maxAmmo != other.maxAmmo) return false
+        if (fireType != other.fireType) return false
+        if (currentListAmmo != other.currentListAmmo) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = maxAmmo
+        result = 31 * result + fireType.hashCode()
+        result = 31 * result + currentListAmmo.hashCode()
+        return result
     }
 }
 
