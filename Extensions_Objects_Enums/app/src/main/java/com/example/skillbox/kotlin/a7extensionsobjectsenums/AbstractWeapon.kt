@@ -26,11 +26,11 @@ abstract class AbstractWeapon(
         }
     }
 
-    fun getAmmoForShot(needAmmo: Int): List<Ammo> {
+    fun getAmmoForShot(): List<Ammo> {
         val ammoForShot: List<Ammo> = mutableListOf()
 
-        for (current in 0..needAmmo) {
-            if (isAmmo && currentListAmmo.size <= maxAmmo) {
+        for (current in 0..maxAmmo) {
+            if (isAmmo) {
                 when (this.fireType) {
                     FireType.SingleFire -> {
                         ammoForShot.take(1)
