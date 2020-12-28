@@ -1,14 +1,16 @@
 package com.example.skillbox.kotlin.a7extensionsobjectsenums
 
-sealed class FireType {
+sealed class FireType (
+        open val lineSize: Int
+) {
 
-    object SingleFire : FireType() {
+    object SingleFire : FireType(lineSize = 1) {
 
     }
 
     data class LineFire(
-            val lineSize: Int
-    ) : FireType() {
+            override val lineSize: Int
+    ) : FireType(lineSize = lineSize) {
 
     }
 }

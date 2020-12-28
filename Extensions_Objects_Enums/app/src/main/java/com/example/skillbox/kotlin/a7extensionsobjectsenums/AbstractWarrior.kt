@@ -20,10 +20,10 @@ abstract class AbstractWarrior(
         get() = TODO("Not yet implemented")
 
     override fun attack(warrior: Warrior) {
-        for (current in 1..10)
+        for (round in 1..10)
             if (!weapon.isAmmo) {
                 weapon.recharge()
-                break
+                continue
             } else {
                 weapon.getAmmoForShot().forEach {
                     if (hitChance.toBoolean() >= missChance.toBoolean()) {

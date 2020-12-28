@@ -1,7 +1,8 @@
 package com.example.skillbox.kotlin.a7extensionsobjectsenums
 
 fun main() {
-    val pistol: AbstractWeapon = Weapons.createPistol()
+    val automaton: AbstractWeapon = Weapons.createAutomaton()
+    automaton.recharge()
+    automaton.getAmmoForShot().forEach { println(it) }
 
-    pistol.getAmmoForShot()
 }
