@@ -19,8 +19,13 @@ abstract class AbstractWeapon(
 
     fun getAmmoForShot(): MutableList<Ammo> {
         val ammoForShot = mutableListOf<Ammo>()
-        for (current in 0 until fireType.lineSize) {
-            ammoForShot.add(currentListAmmo.removeAt(fireType.lineSize))
+
+        if (currentListAmmo.size <= fireType.lineSize) {
+            currentListAmmo = MutableList(0) {makeAmmo()}
+        } else {
+            for (current in 0 until fireType.lineSize) {
+                ammoForShot.add(currentListAmmo.removeAt(fireType.lineSize))
+            }
         }
         return ammoForShot
     }

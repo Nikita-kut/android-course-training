@@ -13,11 +13,10 @@ enum class Ammo(
     SHOTGUNPATRON(damage = 10, chanceOfCriticalDamage = 15, coefOfCriticalDamage = 4),
     GRENADE(damage = 10, chanceOfCriticalDamage = 5, coefOfCriticalDamage = 5);
 
-        private fun Int.toBoolean(): Boolean {
-        return Random.nextInt(0..100) <= this
-}
-
     fun getDamage(ammo: Ammo): Int {
         return if (chanceOfCriticalDamage.toBoolean()) damage * coefOfCriticalDamage else damage
     }
+}
+fun Int.toBoolean(): Boolean {
+    return Random.nextInt(0..100) <= this
 }
