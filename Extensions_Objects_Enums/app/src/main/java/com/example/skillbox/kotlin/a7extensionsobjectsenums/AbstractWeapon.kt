@@ -21,10 +21,11 @@ abstract class AbstractWeapon(
         val ammoForShot = mutableListOf<Ammo>()
 
         if (currentListAmmo.size <= fireType.lineSize) {
-            currentListAmmo = MutableList(0) {makeAmmo()}
+            recharge()
+            println("Recharge 2")
         } else {
             for (current in 0 until fireType.lineSize) {
-                ammoForShot.add(currentListAmmo.removeAt(fireType.lineSize))
+                ammoForShot.add(currentListAmmo.removeAt(0))
             }
         }
         return ammoForShot
@@ -48,6 +49,10 @@ abstract class AbstractWeapon(
         result = 31 * result + fireType.hashCode()
         result = 31 * result + currentListAmmo.hashCode()
         return result
+    }
+
+    override fun toString(): String {
+        return "AbstractWeapon(maxAmmo=$maxAmmo, fireType=$fireType)"
     }
 }
 

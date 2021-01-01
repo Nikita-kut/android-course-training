@@ -3,29 +3,21 @@ package com.example.skillbox.kotlin.a7extensionsobjectsenums
 fun main() {
     val automaton: AbstractWeapon = Weapons.createAutomaton()
 
-    automaton.recharge()
-    println("Automaton size is ${automaton.currentListAmmo.size}")
-    println(automaton.isAmmo)
+    val corporal: Corporal = Corporal()
+    val soldier: Soldier = Soldier()
+    println(soldier.currentHealth)
 
-    automaton.getAmmoForShot()
-    println("Automaton size1 is ${automaton.currentListAmmo.size}")
-    automaton.getAmmoForShot()
-    println("Automaton size2 is ${automaton.currentListAmmo.size}")
-    automaton.getAmmoForShot()
-    println("Automaton size3 is ${automaton.currentListAmmo.size}")
-    automaton.getAmmoForShot()
-    println("Automaton size4 is ${automaton.currentListAmmo.size}")
-    automaton.getAmmoForShot()
-    println("Automaton size5 is ${automaton.currentListAmmo.size}")
-    automaton.getAmmoForShot()
-    println("Automaton size6 is ${automaton.currentListAmmo.size}")
-    automaton.getAmmoForShot()
-    println("Automaton size6 is ${automaton.currentListAmmo.size}")
-    automaton.getAmmoForShot()
-    println("Automaton size6 is ${automaton.currentListAmmo.size}")
-    automaton.getAmmoForShot()
-    println("Automaton size6 is ${automaton.currentListAmmo.size}")
-    automaton.getAmmoForShot()
-    println("Automaton size6 is ${automaton.currentListAmmo.size}")
-    println(automaton.isAmmo)
+    corporal.attack(soldier)
+    corporal.attack(soldier)
+
+    println(soldier.currentHealth)
+
+   val team = Team ()
+
+    val team2: MutableList<Warrior> = team.createTeam(teamSize = 10)
+
+    team2.forEach { println(it) }
+    println(team2.size)
+
+
 }
