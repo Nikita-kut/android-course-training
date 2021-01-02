@@ -1,23 +1,13 @@
 package com.example.skillbox.kotlin.a7extensionsobjectsenums
 
 fun main() {
-    val automaton: AbstractWeapon = Weapons.createAutomaton()
+    println("Enter first team size")
+    val firstTeamSize: Int = readLine()?.toIntOrNull() ?: return
 
-    val corporal: Corporal = Corporal()
-    val soldier: Soldier = Soldier()
-    println(soldier.currentHealth)
+    println("Enter second team size")
+    val secondTeamSize: Int = readLine()?.toIntOrNull() ?: return
 
-    corporal.attack(soldier)
-    corporal.attack(soldier)
+    val battle: Battle = Battle(firstTeamSize = firstTeamSize, secondTeamSize = secondTeamSize)
 
-    println(soldier.currentHealth)
-
-   val team = Team ()
-
-    val team2: MutableList<Warrior> = team.createTeam(teamSize = 10)
-
-    team2.forEach { println(it) }
-    println(team2.size)
-
-
+    battle.nextBattleIteration()
 }

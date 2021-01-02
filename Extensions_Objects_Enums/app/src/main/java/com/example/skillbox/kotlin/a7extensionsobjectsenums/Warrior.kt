@@ -5,6 +5,8 @@ interface Warrior {
 
     val missChance: Int
 
+    val currentHealth: Int
+
     fun attack (warrior: Warrior)
 
     fun takeDamage (damage: Int)

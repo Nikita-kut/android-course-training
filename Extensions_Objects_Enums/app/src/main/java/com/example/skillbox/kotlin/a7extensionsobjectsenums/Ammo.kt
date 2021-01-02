@@ -13,7 +13,7 @@ enum class Ammo(
     SHOTGUNPATRON(damage = 10, chanceOfCriticalDamage = 15, coefOfCriticalDamage = 4),
     GRENADE(damage = 10, chanceOfCriticalDamage = 5, coefOfCriticalDamage = 5);
 
-    fun getDamage(ammo: Ammo): Int {
+    fun getDamage2(): Int {
         return if (chanceOfCriticalDamage.toBoolean()) damage * coefOfCriticalDamage else damage
     }
 }

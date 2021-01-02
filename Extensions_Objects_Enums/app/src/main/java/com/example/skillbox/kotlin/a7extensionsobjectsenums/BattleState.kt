@@ -4,11 +4,26 @@ sealed class BattleState {
     data class Progress(
             val teamHealth: Int
     ) : BattleState() {
+        init {
+            println("TeamHealth of first and second team is: $teamHealth")
+        }
     }
 
-    class FirstTeamWin : BattleState()
+    object FirstTeamWin : BattleState() {
+        init {
+            println("First team win")
+        }
+    }
 
-    class SecondTeamWin : BattleState()
+    object SecondTeamWin : BattleState() {
+        init {
+            println("Second team win")
+        }
+    }
 
-    class Draw : BattleState()
+    object Draw : BattleState() {
+        init {
+            println("All warriors is die. Draw")
+        }
+    }
 }

@@ -17,12 +17,11 @@ abstract class AbstractWeapon(
         currentListAmmo = MutableList(size = maxAmmo) { makeAmmo() }
     }
 
-    fun getAmmoForShot(): MutableList<Ammo> {
+    fun getAmmoForShot(): List<Ammo> {
         val ammoForShot = mutableListOf<Ammo>()
 
         if (currentListAmmo.size <= fireType.lineSize) {
             recharge()
-            println("Recharge 2")
         } else {
             for (current in 0 until fireType.lineSize) {
                 ammoForShot.add(currentListAmmo.removeAt(0))
