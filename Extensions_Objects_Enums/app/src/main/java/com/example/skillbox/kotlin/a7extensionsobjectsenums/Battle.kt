@@ -28,15 +28,31 @@ class Battle(
         while (!battleIsOver) {
             firstTeamList.shuffled()
             secondTeamList.shuffled()
-            for (current in 0 until firstTeamList.size) {
-                firstTeamList[current].attack(secondTeamList[current])
-                continue
+
+            if (firstTeamList.size == secondTeamList.size) {
+                for (current in 0 until firstTeamList.size) {
+                    firstTeamList[current].attack(secondTeamList[current])
+                    secondTeamList[current].attack(firstTeamList[current])
+                    continue
+                }
+                getBattleState()
+
+            } else if (firstTeamList.size < secondTeamList.size) {
+                for (current in 0 until firstTeamList.size) {
+                    firstTeamList[current].attack(secondTeamList[current])
+                    secondTeamList[current].attack(firstTeamList[current])
+                    continue
+                }
+                getBattleState()
+
+            } else {
+                for (current in 0 until secondTeamList.size) {
+                    firstTeamList[current].attack(secondTeamList[current])
+                    secondTeamList[current].attack(firstTeamList[current])
+                    continue
+                }
+                getBattleState()
             }
-            for (current in 0 until secondTeamList.size) {
-                secondTeamList[current].attack(firstTeamList[current])
-                continue
-            }
-            getBattleState()
         }
     }
 }
