@@ -31,8 +31,15 @@ class Battle(
 
             if (firstTeamList.size == secondTeamList.size) {
                 for (current in 0 until firstTeamList.size) {
-                    firstTeamList[current].attack(secondTeamList[current])
-                    secondTeamList[current].attack(firstTeamList[current])
+                    if (!firstTeamList[current].isKilled) {
+                        firstTeamList[current].attack(secondTeamList[current])
+                    } else break
+                    continue
+                }
+                for (current in 0 until firstTeamList.size) {
+                    if (!secondTeamList[current].isKilled) {
+                        secondTeamList[current].attack(firstTeamList[current])
+                    } else break
                     continue
                 }
                 getBattleState()

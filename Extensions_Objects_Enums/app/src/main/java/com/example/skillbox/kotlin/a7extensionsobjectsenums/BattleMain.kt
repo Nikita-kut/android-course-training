@@ -10,4 +10,6 @@ fun main() {
     val battle: Battle = Battle(firstTeamSize = firstTeamSize, secondTeamSize = secondTeamSize)
 
     battle.nextBattleIteration()
+//    battle.firstTeamList.forEach { println(it) }
+//    battle.secondTeamList.forEach { println(it) }
 }
