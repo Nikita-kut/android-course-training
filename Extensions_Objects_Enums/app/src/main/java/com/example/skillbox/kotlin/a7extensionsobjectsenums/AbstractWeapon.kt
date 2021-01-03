@@ -4,7 +4,7 @@ abstract class AbstractWeapon(
         val maxAmmo: Int,
         val fireType: FireType
 ) {
-    var currentListAmmo = mutableListOf<Ammo>()
+    private var currentListAmmo: List<Ammo> = mutableListOf()
 
     val isAmmo: Boolean
         get() {
@@ -24,7 +24,7 @@ abstract class AbstractWeapon(
             recharge()
         } else {
             for (current in 0 until fireType.lineSize) {
-                ammoForShot.add(currentListAmmo.removeAt(0))
+                ammoForShot.add((currentListAmmo as MutableList<Ammo>).removeAt(0))
             }
         }
         return ammoForShot

@@ -5,9 +5,9 @@ class Battle(
         secondTeamSize: Int
 ) {
     private val firstTeam: Team = Team(firstTeamSize)
-    val firstTeamList: MutableList<Warrior> = firstTeam.createTeam
+    val firstTeamList: List<Warrior> = firstTeam.createTeam
     private val secondTeam: Team = Team(secondTeamSize)
-    val secondTeamList: MutableList<Warrior> = secondTeam.createTeam
+    val secondTeamList: List<Warrior> = secondTeam.createTeam
     val battleIsOver: Boolean
         get() {
             return ((firstTeamList.all { it.isKilled } || (secondTeamList.all { it.isKilled })))
