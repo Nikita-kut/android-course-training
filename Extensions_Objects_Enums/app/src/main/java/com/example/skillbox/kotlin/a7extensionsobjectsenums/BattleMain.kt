@@ -1,9 +1,9 @@
 package com.example.skillbox.kotlin.a7extensionsobjectsenums
 
 fun main() {
-    var firstTeamWinCount: Int = 0
-    var secondTeamWinCount: Int = 0
-    var drawCount: Int = 0
+    var firstTeamWinCount = 0
+    var secondTeamWinCount = 0
+    var drawCount = 0
 
     println("Enter the number of iterations:")
     val numberOfIteration: Int = readLine()?.toIntOrNull() ?: return
