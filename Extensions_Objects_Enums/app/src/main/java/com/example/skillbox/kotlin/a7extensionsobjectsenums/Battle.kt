@@ -5,78 +5,40 @@ class Battle(
         secondTeamSize: Int
 ) {
     private val firstTeam: Team = Team(firstTeamSize)
-    val firstTeamList: List<Warrior> = firstTeam.createTeam
     private val secondTeam: Team = Team(secondTeamSize)
-    val secondTeamList: List<Warrior> = secondTeam.createTeam
-    val battleIsOver: Boolean
+    val isOver: Boolean
         get() {
-            return ((firstTeamList.all { it.isKilled } || (secondTeamList.all { it.isKilled })))
+            return ((firstTeam.warriors.all { it.isKilled } || (secondTeam.warriors.all { it.isKilled })))
         }
 
-    private fun getBattleState(): BattleState {
-        return if (firstTeamList.any { !it.isKilled } && (secondTeamList.any { !it.isKilled })) {
-            val teamHealth: Int = firstTeamList.sumBy { it.currentHealth } + secondTeamList.sumBy { it.currentHealth }
-            BattleState.Progress(teamHealth)
-        } else if (firstTeamList.any { !it.isKilled } && (secondTeamList.all { it.isKilled })) {
-            BattleState.FirstTeamWin
-        } else if (firstTeamList.all { it.isKilled } && (secondTeamList.any { !it.isKilled })) {
-            BattleState.SecondTeamWin
-        } else BattleState.Draw
+    fun getBattleState(): BattleState {
+        val teamHealth: Int = firstTeam.warriors.sumBy { it.currentHealth } + secondTeam.warriors.sumBy { it.currentHealth }
+        return when {
+            firstTeam.warriors.any { !it.isKilled } && (secondTeam.warriors.any { !it.isKilled }) -> BattleState.Progress(teamHealth)
+            firstTeam.warriors.any { !it.isKilled } && (secondTeam.warriors.all { it.isKilled }) -> BattleState.FirstTeamWin
+            firstTeam.warriors.all { it.isKilled } && (secondTeam.warriors.any { !it.isKilled }) -> BattleState.SecondTeamWin
+            else -> BattleState.Draw
+        }
     }
 
     fun nextBattleIteration() {
-        while (!battleIsOver) {
-            var n = -1
-            n++
-            firstTeamList.shuffled()
-            secondTeamList.shuffled()
+        val firstShuffledTeam = firstTeam.warriors.shuffled()
+        val secondShuffledTeam = secondTeam.warriors.shuffled()
 
-            if (firstTeamList.size == secondTeamList.size) {
-                if (!firstTeamList[n].isKilled) {
-                    for (current in 0 until firstTeamList.size) {
-                        firstTeamList[current].attack(secondTeamList[current])
-                        continue
-                    }
+        if (firstShuffledTeam.size <= secondShuffledTeam.size) {
+            firstShuffledTeam.forEachIndexed { index, it ->
+                if (!it.isKilled && !secondShuffledTeam[index].isKilled) {
+                    it.attack(secondShuffledTeam[index])
+                    secondShuffledTeam[index].attack(it)
                 }
-                if (!secondTeamList[n].isKilled) {
-                    for (current in 0 until firstTeamList.size) {
-                        secondTeamList[current].attack(firstTeamList[current])
-                        continue
-                    }
+            }
+        } else {
+            secondShuffledTeam.forEachIndexed { index, it ->
+                if (!it.isKilled && !firstShuffledTeam[index].isKilled) {
+                    it.attack(firstShuffledTeam[index])
+                    firstShuffledTeam[index].attack(it)
                 }
-                getBattleState()
-
-            } else if (firstTeamList.size < secondTeamList.size) {
-                if (!firstTeamList[n].isKilled) {
-                    for (current in 0 until firstTeamList.size) {
-                        firstTeamList[current].attack(secondTeamList[current])
-                        continue
-                    }
-                }
-                if (!secondTeamList[n].isKilled) {
-                    for (current in 0 until firstTeamList.size) {
-                        secondTeamList[current].attack(firstTeamList[current])
-                        continue
-                    }
-                }
-                getBattleState()
-
-            } else {
-                if (!secondTeamList[n].isKilled) {
-                    for (current in 0 until secondTeamList.size) {
-                        secondTeamList[current].attack(firstTeamList[current])
-                        continue
-                    }
-                }
-                if (!firstTeamList[n].isKilled) {
-                    for (current in 0 until secondTeamList.size) {
-                        firstTeamList[current].attack(secondTeamList[current])
-                        continue
-                    }
-                }
-                getBattleState()
             }
         }
     }
 }
-
