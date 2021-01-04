@@ -19,7 +19,6 @@ fun main() {
 
         while (!battle.isOver) {
             battle.nextBattleIteration()
-            battle.getBattleState()
             battle.getBattleState().printBattleState()
             when {
                 battle.getBattleState() is BattleState.FirstTeamWin -> firstTeamWinCount++
