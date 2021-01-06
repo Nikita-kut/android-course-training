@@ -1,5 +1,7 @@
 package com.example.skillbox.kotlin.a08_01_generics
 
+import kotlin.random.Random
+
 fun main() {
     val intListForPrint = filterList(listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
     val doubleListForPrint = filterList(listOf(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0))
@@ -57,6 +59,8 @@ sealed class Result<out T, in R> {
 }
 
 fun returnResult(): Result<Int, String> {
-    return Result.Success<Int, String>(5)
+    val randomInt = (1..10).random()
+    return if (randomInt in 1..5) Result.Success<Int, String>(3) else Result.Error<Int, String>("Error")
 }
+
 
