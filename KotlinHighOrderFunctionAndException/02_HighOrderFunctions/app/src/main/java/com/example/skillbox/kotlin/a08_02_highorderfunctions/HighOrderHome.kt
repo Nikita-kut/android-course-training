@@ -24,8 +24,8 @@ class Queue<T>(list: MutableList<T>) {
          не уверен что можно через него */
     }
 
-    fun filterQueue(customFilter: (T) -> Boolean): Queue<T> {
-        customFilter { it -> it.to }
+    fun filterQueue(customFilter: (listForFilter: MutableList<T>) -> Boolean = {it.toString().length > 5} ) {
+        customFilter(queueList)
     }
 
 
