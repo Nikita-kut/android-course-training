@@ -1,5 +1,7 @@
 package com.example.skillbox.kotlin.a7extensionsobjectsenums
 
+import com.example.skillbox.kotlin.a08_03_exception.NoAmmoException
+
 abstract class AbstractWeapon(
         val maxAmmo: Int,
         val fireType: FireType
@@ -19,9 +21,12 @@ abstract class AbstractWeapon(
 
     fun getAmmoForShot(): List<Ammo> {
         val ammoForShot = mutableListOf<Ammo>()
-
-        for (current in 0 until fireType.lineSize) {
-            ammoForShot.add((currentListAmmo as MutableList<Ammo>).removeAt(0))
+        if (!this.isAmmo) {
+            throw NoAmmoException()
+        } else {
+            for (current in 0 until fireType.lineSize) {
+                ammoForShot.add((currentListAmmo as MutableList<Ammo>).removeAt(0))
+            }
         }
         return ammoForShot
     }

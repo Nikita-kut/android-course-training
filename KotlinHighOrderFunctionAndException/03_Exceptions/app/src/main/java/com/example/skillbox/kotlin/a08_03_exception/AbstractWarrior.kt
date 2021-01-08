@@ -20,15 +20,11 @@ abstract class AbstractWarrior(
     override fun attack(warrior: Warrior) {
         var currentDamage = 0
         try {
-            if (!weapon.isAmmo) {
-                throw NoAmmoException()
-            } else {
-                weapon.getAmmoForShot().forEach {
-                    if (hitChance.toBoolean() && !warrior.missChance.toBoolean()) {
-                        currentDamage += it.getDamage2()
-                    }
-                    warrior.takeDamage(currentDamage)
+            weapon.getAmmoForShot().forEach {
+                if (hitChance.toBoolean() && !warrior.missChance.toBoolean()) {
+                    currentDamage += it.getDamage2()
                 }
+                warrior.takeDamage(currentDamage)
             }
         } catch (e: NoAmmoException) {
             weapon.recharge()
