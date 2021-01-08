@@ -8,21 +8,27 @@ fun main() {
     intListForPrint.forEach { println(it) }
     doubleListForPrint.forEach { println(it) }
 
-    val queueTest = Queue<String>(mutableListOf("Test1", "Test2", "Test3", "Test4", "Test5"))
+    val queue = Queue<String>()
 
-    queueTest.enqueue("Test6")
-    println(queueTest)
-    queueTest.dequeue()
-    println(queueTest)
-    queueTest.dequeue()
-    queueTest.dequeue()
-    queueTest.dequeue()
-    queueTest.dequeue()
-    queueTest.dequeue()
-    println(queueTest)
-    queueTest.dequeue()
-    queueTest.dequeue()
-    println(queueTest)
+
+    queue.enqueue("Test1")
+    queue.enqueue("Test2")
+    queue.enqueue("Test3")
+    queue.enqueue("Test4")
+    queue.enqueue("Test5")
+    queue.enqueue("Test6")
+    println(queue)
+    queue.dequeue()
+    println(queue)
+    queue.dequeue()
+    queue.dequeue()
+    queue.dequeue()
+    queue.dequeue()
+    queue.dequeue()
+    println(queue)
+    queue.dequeue()
+    queue.dequeue()
+    println(queue)
 
 }
 
@@ -30,9 +36,9 @@ fun <T : Number> filterList(list: List<T>): List<T> {
     return list.filter { it.toInt() % 2 == 0 }
 }
 
-class Queue<T>(list: MutableList<T>) {
+class Queue<T>() {
 
-    private var queueList: MutableList<T> = list
+    private var queueList: MutableList<T> = mutableListOf()
 
     fun enqueue(item: T) {
         queueList.add(item)

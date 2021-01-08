@@ -1,16 +1,17 @@
 package com.example.skillbox.kotlin.a08_02_highorderfunctions
 
 fun main() {
-    val queueTest = Queue<String>(listOf())
+    val queueTest = Queue<String>()
     queueTest.enqueue("111111")
     queueTest.enqueue("22")
     queueTest.enqueue("333333")
+    println(queueTest)
     println(queueTest.filterQueue { it.length > 5 })
 }
 
-class Queue<T>(list: List<T>) {
+class Queue<T>() {
 
-    private var queueList = list.toMutableList()
+    private var queueList = mutableListOf<T>()
 
     fun enqueue(item: T) {
         queueList.add(item)
@@ -23,14 +24,11 @@ class Queue<T>(list: List<T>) {
          не уверен что можно через него */
     }
 
-    fun filterQueue(predicate: (T) -> Boolean): Queue<T> {
+
+    fun filterQueue(predicate: (T) -> Boolean): MutableList<T> {
         val queueForAdd = mutableListOf<T>()
-        queueList.forEachIndexed { index, it ->
-            if (predicate(queueList[index])) {
-                queueForAdd.add(it)
-            }
-        }
-        return Queue(queueForAdd)
+        queueList.forEach { if (predicate(it)) queueForAdd.add(it) }
+        return queueForAdd
     }
 
 
