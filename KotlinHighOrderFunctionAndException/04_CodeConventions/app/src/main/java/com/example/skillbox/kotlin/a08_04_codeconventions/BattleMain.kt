@@ -27,10 +27,12 @@ fun main() {
             }
         }
     }
-    println("""
+    println(
+        """
             ---
             firstTeam win: $firstTeamWinCount
             secondTeam win: $secondTeamWinCount
             draw: $drawCount
-        """.trimIndent())
+        """.trimIndent()
+    )
 }

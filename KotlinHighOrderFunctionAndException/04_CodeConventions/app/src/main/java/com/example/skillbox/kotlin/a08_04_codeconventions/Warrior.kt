@@ -7,7 +7,7 @@ interface Warrior {
 
     val currentHealth: Int
 
-    fun attack (warrior: Warrior)
+    fun attack(warrior: Warrior)
 
-    fun takeDamage (damage: Int)
+    fun takeDamage(damage: Int)
 }

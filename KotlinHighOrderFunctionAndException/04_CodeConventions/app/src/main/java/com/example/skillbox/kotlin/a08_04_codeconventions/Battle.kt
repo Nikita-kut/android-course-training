@@ -1,8 +1,8 @@
 package com.example.skillbox.kotlin.a7extensionsobjectsenums
 
 class Battle(
-        firstTeamSize: Int,
-        secondTeamSize: Int
+    firstTeamSize: Int,
+    secondTeamSize: Int
 ) {
     private val firstTeam: Team = Team(firstTeamSize)
     private val secondTeam: Team = Team(secondTeamSize)
@@ -12,9 +12,12 @@ class Battle(
         }
 
     fun getBattleState(): BattleState {
-        val teamHealth: Int = firstTeam.warriors.sumBy { it.currentHealth } + secondTeam.warriors.sumBy { it.currentHealth }
+        val teamHealth: Int =
+            firstTeam.warriors.sumBy { it.currentHealth } + secondTeam.warriors.sumBy { it.currentHealth }
         return when {
-            firstTeam.warriors.any { !it.isKilled } && (secondTeam.warriors.any { !it.isKilled }) -> BattleState.Progress(teamHealth)
+            firstTeam.warriors.any { !it.isKilled } && (secondTeam.warriors.any { !it.isKilled }) -> BattleState.Progress(
+                teamHealth
+            )
             firstTeam.warriors.any { !it.isKilled } && (secondTeam.warriors.all { it.isKilled }) -> BattleState.FirstTeamWin
             firstTeam.warriors.all { it.isKilled } && (secondTeam.warriors.any { !it.isKilled }) -> BattleState.SecondTeamWin
             else -> BattleState.Draw

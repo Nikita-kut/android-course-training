@@ -1,7 +1,10 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'org.jmailen.kotlinter'
+//    apply from 'D:\\Skillbox\\android_basic\\android_basic\\KotlinHighOrderFunctionAndException\\04_CodeConventions\\app\\ktlint.gradle'
 }
+apply from 'D:\\Skillbox\\android_basic\\android_basic\\KotlinHighOrderFunctionAndException\\04_CodeConventions\\app\\ktlint.gradle'
 
 android {
     compileSdkVersion 30

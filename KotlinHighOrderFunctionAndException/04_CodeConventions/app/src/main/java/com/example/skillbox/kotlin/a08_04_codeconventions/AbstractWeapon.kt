@@ -3,8 +3,8 @@ package com.example.skillbox.kotlin.a7extensionsobjectsenums
 import com.example.skillbox.kotlin.a08_03_exception.NoAmmoException
 
 abstract class AbstractWeapon(
-        val maxAmmo: Int,
-        val fireType: FireType
+    val maxAmmo: Int,
+    val fireType: FireType
 ) {
     private var currentListAmmo: List<Ammo> = mutableListOf()
 
@@ -89,5 +89,3 @@ object Weapons {
         }
     }
 }
-
-
