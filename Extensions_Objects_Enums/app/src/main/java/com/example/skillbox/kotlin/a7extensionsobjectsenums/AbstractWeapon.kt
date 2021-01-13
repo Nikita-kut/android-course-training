@@ -1,8 +1,8 @@
 package com.example.skillbox.kotlin.a7extensionsobjectsenums
 
 abstract class AbstractWeapon(
-        val maxAmmo: Int,
-        val fireType: FireType
+    val maxAmmo: Int,
+    val fireType: FireType
 ) {
     private var currentListAmmo: List<Ammo> = mutableListOf()
 
@@ -88,5 +88,3 @@ object Weapons {
         }
     }
 }
-
-

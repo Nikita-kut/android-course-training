@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">09_BuildAndResourses</string>
+    <string name="main_name_value">Light</string>
+
+    <plurals name="main_quantity_string">
+        <item quantity="one">%1$d value</item>
+        <item quantity="few">%1$d values</item>
+        <item quantity="other">%1$d value</item>
+    </plurals>
+</resources>
