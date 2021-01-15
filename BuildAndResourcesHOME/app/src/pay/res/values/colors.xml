@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="maybe_grey">#6D6478</color>
+    <color name="khaki">#6B8F4A</color>
+    <color name="orange">#C87A1C</color>
+    <color name="other_black">#191202</color>
+    <color name="turquoise">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>
