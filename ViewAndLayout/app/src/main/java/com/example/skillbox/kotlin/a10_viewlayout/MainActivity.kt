@@ -24,7 +24,6 @@ class MainActivity : AppCompatActivity() {
             loginClick()
         }
     }
-
     private fun loginClick() {
         val progressBarLoader = layoutInflater.inflate(R.layout.activity_loader, container, false)
         container.addView(progressBarLoader)
