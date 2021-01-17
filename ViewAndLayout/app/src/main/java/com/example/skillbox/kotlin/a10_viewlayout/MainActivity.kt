@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity() {
             emailInput.isEnabled = true
             passwordInput.isEnabled = true
             checkBox.isEnabled = true
+            checkBox.isChecked = false
             Toast.makeText(this, R.string.loader_operation, Toast.LENGTH_SHORT).show()
         }, 2000)
     }
