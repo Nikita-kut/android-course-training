@@ -4,49 +4,50 @@ import android.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.core.view.marginTop
+import androidx.core.widget.addTextChangedListener
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-
-    private val passwordPattern =
-        "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$"
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        loginButton.isEnabled = false
-        checkBox.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked && emailInput.text.isNotEmpty() && passwordInput.text.isNotEmpty()) {
-                loginButton.isEnabled = true
-            }
-        }
-        loginButton.setOnClickListener {
-            val email = emailInput.text.toString().trim()
-            val password = passwordInput.text.toString().trim()
-            loginClick()
+        emailInput.addTextChangedListener(watcher)
 
+        passwordInput.addTextChangedListener(watcher)
+
+        checkBox.setOnCheckedChangeListener { buttonView, isChecked ->
+            loginButton.isEnabled = isChecked && emailInput.text.toString()
+                .isNotEmpty() && passwordInput.text.toString().isNotEmpty()
+        }
+
+        loginButton.setOnClickListener {
+            loginClick()
         }
     }
 
+    private val watcher = object : TextWatcher {
+        override fun afterTextChanged(s: Editable?) {}
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            loginButton.isEnabled =
+                emailInput.text.toString().isNotEmpty() && passwordInput.text.toString()
+                    .isNotEmpty() && checkBox.isChecked
+        }
+    }
+    private val passwordPattern =
+        "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$"
+
     private fun loginClick() {
-        val email = emailInput.text.toString().trim()
-        val password = passwordInput.text.toString().trim()
-
-        fun emailValidation(email: String): Boolean {
-            return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
-        }
-
-        fun passwordValidation(password: String): Boolean {
-            return password.matches(passwordPattern.toRegex())
-        }
-
         val progressBarLoader = ProgressBar(this).apply {
             ActionBar.LayoutParams(
                 ActionBar.LayoutParams.WRAP_CONTENT,
@@ -55,28 +56,33 @@ class MainActivity : AppCompatActivity() {
         }
         container.addView(progressBarLoader)
 
+        val validateEmail =
+            android.util.Patterns.EMAIL_ADDRESS.matcher(emailInput.text.toString().trim()).matches()
+        val validatePassword =
+            passwordInput.text.toString().trim().matches(passwordPattern.toRegex())
+
         loginButton.isEnabled = false
         emailInput.isEnabled = false
         passwordInput.isEnabled = false
         checkBox.isEnabled = false
 
-        if (emailValidation(email) && passwordValidation(password)) {
+        if (validateEmail && validatePassword) {
             Handler().postDelayed({
                 container.removeView(progressBarLoader)
-                loginButton.isEnabled = false
+                loginButton.isEnabled = true
                 emailInput.isEnabled = true
                 passwordInput.isEnabled = true
                 checkBox.isEnabled = true
-                checkBox.isChecked = false
+                checkBox.isChecked = true
                 Toast.makeText(this, R.string.loader_operation, Toast.LENGTH_SHORT).show()
             }, 2000)
         } else {
             container.removeView(progressBarLoader)
-            loginButton.isEnabled = false
+            loginButton.isEnabled = true
             emailInput.isEnabled = true
             passwordInput.isEnabled = true
             checkBox.isEnabled = true
-            checkBox.isChecked = false
+            checkBox.isChecked = true
             Toast.makeText(this, "Invalid email or password", Toast.LENGTH_SHORT).show()
         }
     }
