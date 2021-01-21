@@ -13,6 +13,7 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.core.view.marginTop
 import androidx.core.widget.addTextChangedListener
+import androidx.core.widget.doOnTextChanged
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -20,13 +21,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        emailInput.addTextChangedListener(watcher)
+        loginButton.isEnabled = false
 
-        passwordInput.addTextChangedListener(watcher)
+        emailInput.doOnTextChanged { text, start, before, count ->
+            validateInputAndCheckbox()
+        }
+
+        passwordInput.doOnTextChanged { text, start, before, count ->
+            validateInputAndCheckbox()
+        }
 
         checkBox.setOnCheckedChangeListener { buttonView, isChecked ->
-            loginButton.isEnabled = isChecked && emailInput.text.toString()
-                .isNotEmpty() && passwordInput.text.toString().isNotEmpty()
+            validateInputAndCheckbox()
         }
 
         loginButton.setOnClickListener {
@@ -34,16 +40,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private val watcher = object : TextWatcher {
-        override fun afterTextChanged(s: Editable?) {}
-        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-            loginButton.isEnabled =
-                emailInput.text.toString().isNotEmpty() && passwordInput.text.toString()
-                    .isNotEmpty() && checkBox.isChecked
-        }
+    private fun validateInputAndCheckbox() {
+        loginButton.isEnabled = checkBox.isChecked && emailInput.text.toString()
+            .isNotEmpty() && passwordInput.text.toString().isNotEmpty()
     }
+
     private val passwordPattern =
         "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$"
 
