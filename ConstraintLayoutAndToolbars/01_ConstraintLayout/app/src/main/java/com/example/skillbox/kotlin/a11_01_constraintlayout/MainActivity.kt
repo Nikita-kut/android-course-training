@@ -42,30 +42,27 @@ class MainActivity : AppCompatActivity() {
     private val passwordPattern =
         "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$"
 
-//    private fun makeProgressBar(): ProgressBar = ProgressBar(this).apply {
-//        ConstraintLayout.LayoutParams(
-//            ConstraintLayout.LayoutParams.WRAP_CONTENT,
-//            ConstraintLayout.LayoutParams.WRAP_CONTENT
-//        )
-//    }
-
-    private fun loginClick() {
-        val progressBarAdd = ProgressBar(this).apply {
+    private fun makeProgressBar(): ProgressBar {
+        val progressBar = ProgressBar(this).apply {
             ConstraintLayout.LayoutParams(
                 ConstraintLayout.LayoutParams.WRAP_CONTENT,
                 ConstraintLayout.LayoutParams.WRAP_CONTENT
             )
         }
-        progressBarAdd.id = View.generateViewId()
+        progressBar.id = View.generateViewId()
+        container.addView(progressBar)
 
         val constraintSet = ConstraintSet()
         constraintSet.clone(container)
-        constraintSet.connect(progressBarAdd.id, ConstraintSet.TOP, guideline3.id, ConstraintSet.BOTTOM)
-        constraintSet.connect(progressBarAdd.id, ConstraintSet.START, guideline.id, ConstraintSet.START)
-        constraintSet.connect(progressBarAdd.id, ConstraintSet.END, guideline2.id, ConstraintSet.END)
+        constraintSet.connect(progressBar.id, ConstraintSet.TOP, guideline3.id, ConstraintSet.BOTTOM)
+        constraintSet.connect(progressBar.id, ConstraintSet.START, guideline.id, ConstraintSet.START)
+        constraintSet.connect(progressBar.id, ConstraintSet.END, guideline2.id, ConstraintSet.END)
         constraintSet.applyTo(container)
+        return progressBar
+    }
 
-        container.addView(progressBarAdd)
+    private fun loginClick() {
+        val progressBarAdd = makeProgressBar()
 
         val validateEmail =
             android.util.Patterns.EMAIL_ADDRESS.matcher(emailInput.text.toString().trim()).matches()
@@ -77,7 +74,7 @@ class MainActivity : AppCompatActivity() {
         passwordInput.isEnabled = false
         checkBox.isEnabled = false
 
-        if (validateEmail /*&& validatePassword*/) {
+        if (validateEmail && validatePassword) {
             Handler().postDelayed({
                 container.removeView(progressBarAdd)
                 loginButton.isEnabled = true
