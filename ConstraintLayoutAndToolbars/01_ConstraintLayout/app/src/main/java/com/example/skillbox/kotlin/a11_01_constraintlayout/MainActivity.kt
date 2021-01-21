@@ -54,9 +54,9 @@ class MainActivity : AppCompatActivity() {
 
         val constraintSet = ConstraintSet()
         constraintSet.clone(container)
-        constraintSet.connect(progressBar.id, ConstraintSet.TOP, guideline3.id, ConstraintSet.BOTTOM)
-        constraintSet.connect(progressBar.id, ConstraintSet.START, guideline.id, ConstraintSet.START)
-        constraintSet.connect(progressBar.id, ConstraintSet.END, guideline2.id, ConstraintSet.END)
+        constraintSet.connect(progressBar.id, ConstraintSet.TOP, bottomHorizontalGuideline.id, ConstraintSet.BOTTOM)
+        constraintSet.connect(progressBar.id, ConstraintSet.START, leftVerticalGuideline.id, ConstraintSet.START)
+        constraintSet.connect(progressBar.id, ConstraintSet.END, rightVerticalGuideline.id, ConstraintSet.END)
         constraintSet.applyTo(container)
         return progressBar
     }
