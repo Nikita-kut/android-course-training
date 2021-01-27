@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         loginButton.isEnabled = false
 
+
         emailInput.doOnTextChanged { text, start, before, count ->
             validateInputAndCheckbox()
         }
