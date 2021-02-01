@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">11_02_ConstraintLayout</string>
+    <string name="action_search">Search</string>
+    <string name="action_archive">Action archive</string>
+    <string name="action_save">Action save</string>
+    <string name="action_1">Action 1</string>
+    <string name="text_view">321321 32fdfsd 214dsad8 fdsa231hdasj 4828saj</string>
+
 </resources>

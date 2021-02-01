@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.11_02_ConstraintLayout">
-        <activity android:name=".MainActivity">
+        <activity android:name=".LongContentActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
