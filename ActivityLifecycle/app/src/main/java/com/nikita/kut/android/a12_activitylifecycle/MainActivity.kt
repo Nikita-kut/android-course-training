@@ -159,8 +159,9 @@ class MainActivity : AppCompatActivity() {
         etPasswordInput.isEnabled = false
         checkbox.isEnabled = false
 
-        if (validateEmail && validatePassword) {
+        if (validateEmail /*&& validatePassword*/) {
             Handler().postDelayed({
+                textView.setText(R.string.enter_e_mail_and_password)
                 container.removeView(progressBarAdd)
                 btnLogin.isEnabled = true
                 etEmailInput.isEnabled = true
