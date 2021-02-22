@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Intents</string>
+    <string name="enter_mail">E-mail</string>
+    <string name="enter_password">Password</string>
+    <string name="accept_agreement">Accept agreement</string>
+    <string name="log_in">Log in</string>
+    <string name="enter_e_mail_and_password">Enter E-mail and password</string>
+    <string name="loader_operation">Log in success</string>
+    <string name="anr_error">ANR error</string>
+    <string name="enter_phone_number">Enter phone number</string>
+    <string name="call">call</string>
+    <string name="developer_android_com_kotlin_directory">developer.android.com - Kotlin directory</string>
+</resources>
