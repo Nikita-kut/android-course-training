@@ -1,5 +1,6 @@
 package com.nikita.kut.android.a13_intents
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -15,5 +16,12 @@ class DeepLinkActivity : AppCompatActivity() {
         intent.data?.path.let { directory ->
             tvDeepLink.text = directory
         }
+    }
+
+    override fun onNewIntent(newIntent: Intent?) {
+        finish()
+        startActivity(newIntent)
+        super.onNewIntent(newIntent)
+
     }
 }

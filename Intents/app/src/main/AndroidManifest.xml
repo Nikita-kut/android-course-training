@@ -35,7 +35,7 @@
 
         </activity>
         <activity android:name=".DeepLinkActivity"
-            android:launchMode="singleInstance">
+            android:launchMode="singleTop">
 
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

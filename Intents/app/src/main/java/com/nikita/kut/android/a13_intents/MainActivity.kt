@@ -17,6 +17,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.widget.doOnTextChanged
+import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
 
@@ -75,12 +76,15 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_PHONE) {
-            if (resultCode == Activity.RESULT_OK) {
-                ivCallResultNo.visibility = View.GONE
-                ivCallResultOk.visibility = View.VISIBLE
-            } else {
-                ivCallResultNo.visibility = View.VISIBLE
-                ivCallResultOk.visibility = View.GONE
+            when (Random.nextBoolean()) {
+                true -> {
+                    ivCallResultNo.visibility = View.GONE
+                    ivCallResultOk.visibility = View.VISIBLE
+                }
+                false -> {
+                    ivCallResultNo.visibility = View.VISIBLE
+                    ivCallResultOk.visibility = View.GONE
+                }
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data)
