@@ -13,15 +13,18 @@ class DeepLinkActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_deeplink)
 
-        intent.data?.path.let { directory ->
-            tvDeepLink.text = directory
-        }
+        update(intent)
     }
 
     override fun onNewIntent(newIntent: Intent?) {
-        finish()
-        startActivity(newIntent)
+        update(newIntent)
         super.onNewIntent(newIntent)
 
+    }
+
+    private fun update(intent: Intent?) {
+        intent?.data?.path.let { directory ->
+            tvDeepLink.text = directory
+        }
     }
 }
