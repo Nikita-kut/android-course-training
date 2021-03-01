@@ -17,13 +17,7 @@ class MainFragment : Fragment(), ListFragment.ClickListener,
     ): View? = inflater.inflate(R.layout.fragment_main, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val callback = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                childFragmentManager.popBackStack()
-            }
-        }
         super.onViewCreated(view, savedInstanceState)
-        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, callback)
 
         if (savedInstanceState == null)
             childFragmentManager.beginTransaction()

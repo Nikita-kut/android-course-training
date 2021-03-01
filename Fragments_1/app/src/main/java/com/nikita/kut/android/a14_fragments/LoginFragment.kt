@@ -32,8 +32,15 @@ class LoginFragment : Fragment() {
     private val passwordPattern =
         "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$"
     private val mainFragment = MainFragment()
+    private var listener: ClickListener? = null
 
+    override fun onAttach(context: Context) {
 
+        super.onAttach(context)
+        if (context is ClickListener) {
+            listener = context
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -64,7 +71,7 @@ class LoginFragment : Fragment() {
         }
 
         btnLogin.setOnClickListener {
-            loginClick()
+            listener?.onLoginClick()
         }
     }
 
@@ -107,7 +114,7 @@ class LoginFragment : Fragment() {
         return progressBar
     }
 
-    private fun loginClick() {
+    private fun onLoginClick() {
         val progressBarAdd = makeProgressBar()
         val validateEmail =
             android.util.Patterns.EMAIL_ADDRESS.matcher(etEmailInput.text.toString().trim())
@@ -125,8 +132,6 @@ class LoginFragment : Fragment() {
                 textView.setText(R.string.enter_e_mail_and_password)
                 container.removeView(progressBarAdd)
                 setViewsEnable()
-                fragmentManager?.beginTransaction()
-                    ?.replace(R.id.fragment_container, mainFragment)?.commit()
             }, 2000)
         } else {
             formMessage.message = "Invalid email or password"
@@ -162,6 +167,10 @@ class LoginFragment : Fragment() {
 
     private fun toast(toast: String) {
         Toast.makeText(activity, toast, Toast.LENGTH_SHORT).show()
+    }
+
+    interface ClickListener {
+        fun onLoginClick()
     }
 
 }

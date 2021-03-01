@@ -11,4 +11,5 @@
     <string name="call">call</string>
     <string name="developer_android_com_kotlin_directory">developer.android.com - Kotlin directory</string>
     <string name="enter_name">Enter name</string>
+    <string name="main_fragment">main_fragment</string>
 </resources>
