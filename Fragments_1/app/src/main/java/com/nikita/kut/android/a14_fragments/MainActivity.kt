@@ -18,8 +18,6 @@ class MainActivity : AppCompatActivity(), LoginFragment.ClickListener {
                 .replace(R.id.fragment_container, loginFragment)
                 .commit()
         }
-
-
     }
 
     override fun onBackPressed() {
@@ -28,7 +26,7 @@ class MainActivity : AppCompatActivity(), LoginFragment.ClickListener {
         if (backStackCount == 0) {
             super.onBackPressed()
         } else {
-            supportFragmentManager.findFragmentByTag("main_fragment")?.childFragmentManager?.popBackStack()
+            supportFragmentManager.findFragmentByTag(getString(R.string.main_fragment))?.childFragmentManager?.popBackStack()
         }
     }
 
