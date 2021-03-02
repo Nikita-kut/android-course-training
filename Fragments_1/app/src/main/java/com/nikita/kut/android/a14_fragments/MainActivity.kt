@@ -6,12 +6,12 @@ import androidx.appcompat.app.AppCompatActivity
 
 private val loginFragment = LoginFragment()
 
-class MainActivity : AppCompatActivity(), LoginFragment.ClickListener {
+class MainActivity : AppCompatActivity(R.layout.activity_main) {
+    val isTablet: Boolean by lazy { resources.getBoolean(R.bool.isTablet) }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
@@ -22,18 +22,11 @@ class MainActivity : AppCompatActivity(), LoginFragment.ClickListener {
 
     override fun onBackPressed() {
         val backStackCount =
-            supportFragmentManager.findFragmentByTag(getString(R.string.main_fragment))?.childFragmentManager?.backStackEntryCount
+            supportFragmentManager.findFragmentByTag(MainFragment.MAIN_FRAGMENT_TAG)?.childFragmentManager?.backStackEntryCount
         if (backStackCount == 0) {
             super.onBackPressed()
         } else {
-            supportFragmentManager.findFragmentByTag(getString(R.string.main_fragment))?.childFragmentManager?.popBackStack()
+            supportFragmentManager.findFragmentByTag(MainFragment.MAIN_FRAGMENT_TAG)?.childFragmentManager?.popBackStack()
         }
     }
-
-    override fun onLoginClick() {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, MainFragment())
-            .commit()
-    }
-
 }

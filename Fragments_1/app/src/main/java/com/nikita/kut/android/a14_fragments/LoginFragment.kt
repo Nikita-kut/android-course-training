@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.transition.Transition
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -15,9 +16,10 @@ import androidx.constraintlayout.widget.ConstraintSet
 import androidx.constraintlayout.widget.Guideline
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import java.lang.RuntimeException
 
-class LoginFragment : Fragment() {
+class LoginFragment : Fragment(R.layout.fragment_login) {
 
     lateinit var btnLogin: Button
     lateinit var etEmailInput: EditText
@@ -31,22 +33,6 @@ class LoginFragment : Fragment() {
     private var formMessage = FormState("")
     private val passwordPattern =
         "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$"
-    private val mainFragment = MainFragment()
-    private var listener: ClickListener? = null
-
-    override fun onAttach(context: Context) {
-
-        super.onAttach(context)
-        if (context is ClickListener) {
-            listener = context
-        }
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_login, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -71,7 +57,7 @@ class LoginFragment : Fragment() {
         }
 
         btnLogin.setOnClickListener {
-            listener?.onLoginClick()
+            onLoginClick()
         }
     }
 
@@ -132,6 +118,19 @@ class LoginFragment : Fragment() {
                 textView.setText(R.string.enter_e_mail_and_password)
                 container.removeView(progressBarAdd)
                 setViewsEnable()
+                activity?.supportFragmentManager?.beginTransaction()
+                    ?.setCustomAnimations(
+                        R.anim.slide_in,
+                        R.anim.fade_out,
+                        R.anim.fade_in,
+                        R.anim.slide_out
+                    )?.apply {
+                            replace(
+                                R.id.fragment_container,
+                                MainFragment(),
+                                MainFragment.MAIN_FRAGMENT_TAG
+                            ).commit()
+                    }
             }, 2000)
         } else {
             formMessage.message = "Invalid email or password"
@@ -168,9 +167,4 @@ class LoginFragment : Fragment() {
     private fun toast(toast: String) {
         Toast.makeText(activity, toast, Toast.LENGTH_SHORT).show()
     }
-
-    interface ClickListener {
-        fun onLoginClick()
-    }
-
 }

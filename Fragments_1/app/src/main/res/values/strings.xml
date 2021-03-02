@@ -12,4 +12,5 @@
     <string name="developer_android_com_kotlin_directory">developer.android.com - Kotlin directory</string>
     <string name="enter_name">Enter name</string>
     <string name="main_fragment">main_fragment</string>
+    <string name="please_enter_name_and_click_button">Please, enter name and click button</string>
 </resources>

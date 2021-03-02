@@ -10,19 +10,13 @@ import android.widget.EditText
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
 
-class ListFragment : Fragment() {
+class ListFragment : Fragment(R.layout.fragment_list) {
 
     lateinit var et1: EditText
     lateinit var et2: EditText
     lateinit var et3: EditText
     lateinit var et4: EditText
     lateinit var et5: EditText
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_list, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -50,12 +44,6 @@ class ListFragment : Fragment() {
         fun onCardClick(text: String)
     }
 
-    companion object {
-        fun newInstance(): ListFragment {
-            return ListFragment()
-        }
-    }
-
     private fun getEtText(): String {
         val arrayEt = listOf(et1, et2, et3, et4, et5)
         var etText = ""
@@ -67,5 +55,9 @@ class ListFragment : Fragment() {
         return etText
     }
 
-
+    companion object {
+        fun newInstance(): ListFragment {
+            return ListFragment()
+        }
+    }
 }
