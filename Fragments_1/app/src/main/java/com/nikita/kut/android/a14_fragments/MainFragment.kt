@@ -1,7 +1,9 @@
 package com.nikita.kut.android.a14_fragments
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 
@@ -12,11 +14,21 @@ class MainFragment : Fragment(R.layout.fragment_main), ListFragment.ClickListene
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (!isTablet) {
-            if (savedInstanceState == null)
+
+
+        when (isTablet) {
+            true -> if (savedInstanceState != null) {
+                parentFragment?.fragmentManager?.beginTransaction()?.replace(
+                    R.id.fragment_container,
+                    MainFragment()
+                )
+                    ?.commit()
+            }
+            false -> if (savedInstanceState == null) {
                 childFragmentManager.beginTransaction()
                     .replace(R.id.main_fragment_container, ListFragment.newInstance())
                     .commit()
+            }
         }
     }
 

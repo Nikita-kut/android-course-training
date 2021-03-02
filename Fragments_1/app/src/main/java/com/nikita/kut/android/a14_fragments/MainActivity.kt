@@ -7,8 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 private val loginFragment = LoginFragment()
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
-    val isTablet: Boolean by lazy { resources.getBoolean(R.bool.isTablet) }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
