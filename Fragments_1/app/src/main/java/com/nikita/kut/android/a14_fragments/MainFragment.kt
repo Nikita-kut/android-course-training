@@ -15,14 +15,9 @@ class MainFragment : Fragment(R.layout.fragment_main), ListFragment.ClickListene
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         when (isTablet) {
             true -> if (savedInstanceState != null) {
-                parentFragment?.fragmentManager?.beginTransaction()?.replace(
-                    R.id.fragment_container,
-                    MainFragment()
-                )
-                    ?.commit()
+                setTextViewHintInvisible(false)
             }
             false -> if (savedInstanceState == null) {
                 childFragmentManager.beginTransaction()
