@@ -1,6 +1,7 @@
 package com.nikita.kut.android.a15_fragments_dialogs.screens
 
 import android.os.Bundle
+import android.os.Parcelable
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -13,10 +14,7 @@ import kotlinx.android.parcel.Parcelize
 
 class ArticleFragment : Fragment(R.layout.fragment_article) {
 
-    val listener: ClickListener? =
-        parentFragment?.let { it as ClickListener }
-            ?: activity?.let { it as ClickListener? }
-    private val btnGenerateBadge: Button by lazy { requireView().findViewById(R.id.btn_generate_badge) }
+    private val listener: ClickListener? by lazy { parentFragment as ClickListener }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -31,10 +29,9 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
                 KEY_TEXT
             )
         )
-        btnGenerateBadge.setOnClickListener {
+        requireView().findViewById<Button>(R.id.btn_generate_badge).setOnClickListener {
             listener?.onGenerateBadgeButtonClick()
         }
-
     }
 
     companion object {
@@ -44,13 +41,11 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
         fun newInstance(
             @DrawableRes drawableRes: Int,
             @StringRes stringRes: Int,
-            tags: List<ArticleTag>
         ): ArticleFragment {
             val fragment = ArticleFragment()
             val args = Bundle().apply {
                 putInt(KEY_DRAWABLE, drawableRes)
                 putInt(KEY_TEXT, stringRes)
-                putBundle()
             }
             fragment.arguments = args
             return fragment

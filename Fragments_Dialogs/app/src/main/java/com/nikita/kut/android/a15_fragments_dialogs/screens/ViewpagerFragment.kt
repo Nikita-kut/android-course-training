@@ -1,9 +1,7 @@
 package com.nikita.kut.android.a15_fragments_dialogs.screens
 
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.widget.Button
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.badge.BadgeDrawable
@@ -13,33 +11,69 @@ import com.nikita.kut.android.a15_fragments_dialogs.R
 import com.nikita.kut.android.a15_fragments_dialogs.model.ArticleScreen
 import com.nikita.kut.android.a15_fragments_dialogs.model.ArticleTag
 import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
-import java.lang.RuntimeException
 import kotlin.math.abs
-import kotlin.math.log
 import kotlin.random.Random
 
-class ViewpagerFragment : Fragment(R.layout.fragment_viewpager), ArticleFragment.ClickListener {
+class ViewpagerFragment : Fragment(R.layout.fragment_viewpager), ArticleFragment.ClickListener,
+    FilterTagsDialogFragment.ConfirmClickListener {
 
-    private val tags: List<ArticleTag> =
-        listOf(ArticleTag.NEWS, ArticleTag.POLITICS, ArticleTag.TECHNOLOGY)
+    private val adapter by lazy {ArticleAdapter(this, screens)}
+    private val tagsAll = listOf(ArticleTag.ANIMALS, ArticleTag.FRUIT, ArticleTag.OTHER)
+    private val tagsToString: Array<String> = ArticleTag.values().map { it.name }.toTypedArray()
+    private var tagsAllChecked = booleanArrayOf(true, true, true)
 
-    private val screens: List<ArticleScreen> = listOf(
-        (ArticleScreen(R.drawable.ic_article_drawable_1, R.string.article_string_1, tags)),
-        (ArticleScreen(R.drawable.ic_article_drawable_2, R.string.article_string_2, tags)),
-        (ArticleScreen(R.drawable.ic_article_drawable_3, R.string.article_string_3, tags)),
-        (ArticleScreen(R.drawable.ic_article_drawable_4, R.string.article_string_4, tags)),
-        (ArticleScreen(R.drawable.ic_article_drawable_5, R.string.article_string_5, tags)),
-        (ArticleScreen(R.drawable.ic_article_drawable_6, R.string.article_string_6, tags)),
-        (ArticleScreen(R.drawable.ic_article_drawable_7, R.string.article_string_7, tags)),
-        (ArticleScreen(R.drawable.ic_article_drawable_8, R.string.article_string_8, tags))
+    private var screens: List<ArticleScreen> = listOf(
+        (ArticleScreen(
+            drawableRes = R.drawable.ic_article_drawable_1,
+            stringRes = R.string.article_string_1,
+            tags = listOf(ArticleTag.OTHER)
+        )),
+        (ArticleScreen(
+            R.drawable.ic_article_drawable_2,
+            R.string.article_string_2,
+            listOf(ArticleTag.FRUIT)
+        )),
+        (ArticleScreen(
+            R.drawable.ic_article_drawable_3,
+            R.string.article_string_3,
+            listOf(ArticleTag.ANIMALS)
+        )),
+        (ArticleScreen(
+            R.drawable.ic_article_drawable_4,
+            R.string.article_string_4,
+            listOf(ArticleTag.OTHER)
+        )),
+        (ArticleScreen(
+            R.drawable.ic_article_drawable_5,
+            R.string.article_string_5,
+            listOf(ArticleTag.OTHER)
+        )),
+        (ArticleScreen(
+            R.drawable.ic_article_drawable_6,
+            R.string.article_string_6,
+            listOf(ArticleTag.OTHER)
+        )),
+        (ArticleScreen(
+            R.drawable.ic_article_drawable_7,
+            R.string.article_string_7,
+            listOf(ArticleTag.OTHER)
+        )),
+        (ArticleScreen(
+            R.drawable.ic_article_drawable_8,
+            R.string.article_string_8,
+            listOf(ArticleTag.FRUIT)
+        ))
     )
+
+    val animals = ArticleTag.values().map {it.name }.toTypedArray()
+    private var filteredList: MutableList<ArticleScreen> = mutableListOf()
     private val viewPager: ViewPager2 by lazy { requireView().findViewById(R.id.view_pager) }
     private val tabLayout: TabLayout by lazy { requireView().findViewById(R.id.tab_layout) }
+    private val toolbar: Toolbar by lazy { requireView().findViewById(R.id.toolbar) }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val adapter = ArticleAdapter(activity ?: throw RuntimeException("adapter"), screens)
         viewPager.adapter = adapter
 
         setDotsIndicator(viewPager)
@@ -47,6 +81,31 @@ class ViewpagerFragment : Fragment(R.layout.fragment_viewpager), ArticleFragment
         setPageAnimation(viewPager)
 
         setTabLayout(viewPager)
+
+        removeBadge()
+
+        toolbar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.filter_tags -> {
+                    FilterTagsDialogFragment.dialogFragmentNewInstance(tagsAllChecked)
+                        .show(childFragmentManager, "filter dialog fragment")
+                    true
+                }
+                else -> false
+            }
+        }
+    }
+
+    override fun onConfirmClick(selectedItems: ArrayList<String>) {
+
+        for (current in screens.indices) {
+            for (index in selectedItems.indices) {
+                if (tagsToString[current] == selectedItems[index]) {
+//                    filteredList.add(tagsToString[current])
+                }
+            }
+        }
+        adapter.updateList(filteredList)
     }
 
     private fun setDotsIndicator(viewPager: ViewPager2) {
@@ -64,26 +123,31 @@ class ViewpagerFragment : Fragment(R.layout.fragment_viewpager), ArticleFragment
     private fun setTabLayout(viewPager: ViewPager2) {
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             when (position) {
-                0 -> tab.text = "Circle"
-                1 -> tab.text = "Apple"
-                2 -> tab.text = "Dino"
-                3 -> tab.text = "Snowman"
-                4 -> tab.text = "Camera"
-                5 -> tab.text = "Icecream"
-                6 -> tab.text = "Pickup"
-                7 -> tab.text = "Pumpkin"
+                0 -> tab.text = getString(R.string.article_short_title_1)
+                1 -> tab.text = getString(R.string.article_short_title_2)
+                2 -> tab.text = getString(R.string.article_short_title_3)
+                3 -> tab.text = getString(R.string.article_short_title_4)
+                4 -> tab.text = getString(R.string.article_short_title_5)
+                5 -> tab.text = getString(R.string.article_short_title_6)
+                6 -> tab.text = getString(R.string.article_short_title_7)
+                7 -> tab.text = getString(R.string.article_short_title_8)
             }
         }.attach()
+    }
+
+    private fun removeBadge() {
+        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                tabLayout.getTabAt(position)?.removeBadge()
+            }
+        })
     }
 
     override fun onGenerateBadgeButtonClick() {
         tabLayout.getTabAt(Random.nextInt(screens.size))?.orCreateBadge?.apply {
             badgeGravity = BadgeDrawable.TOP_END
-            if (this.number == 0) {
-                this.number = 1
-            } else {
-                this.number++
-            }
+            if (number == 0) number = 1 else number++
         }
     }
 }

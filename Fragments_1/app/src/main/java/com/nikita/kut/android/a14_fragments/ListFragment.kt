@@ -2,6 +2,7 @@ package com.nikita.kut.android.a14_fragments
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +18,7 @@ class ListFragment : Fragment(R.layout.fragment_list) {
     lateinit var et3: EditText
     lateinit var et4: EditText
     lateinit var et5: EditText
-
+    
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setViews()

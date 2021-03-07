@@ -1,10 +1,11 @@
 package com.nikita.kut.android.a15_fragments_dialogs.model
 
-import kotlinx.android.parcel.Parcelize
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
-enum class ArticleTag() {
-    NEWS,
-    TECHNOLOGY,
-    POLITICS;
+enum class ArticleTag() : Parcelable {
+    ANIMALS,
+    FRUIT,
+    OTHER;
 }

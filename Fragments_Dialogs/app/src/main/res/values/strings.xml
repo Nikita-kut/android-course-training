@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">15_Fragments_Dialogs</string>
+    <string name="app_name">Fragments Dialogs</string>
     <string name="article_string_1">A laurel wreath is a round wreath made of connected branches and leaves of the bay laurel (Laurus nobilis), an aromatic broadleaf evergreen, or later from spineless butchers broom (Ruscus hypoglossum) or cherry laurel (Prunus laurocerasus). It is a symbol of triumph and is worn as a chaplet around the head, or as a garland around the neck.</string>
     <string name="article_string_2">An apple is an edible fruit produced by an apple tree (Malus domestica). Apple trees are cultivated worldwide and are the most widely grown species in the genus Malus. The tree originated in Central Asia, where its wild ancestor, Malus sieversii, is still found today. </string>
     <string name="article_string_3">Tyrannosaurus[nb 1] is a genus of coelurosaurian theropod dinosaur. The species Tyrannosaurus rex (rex meaning "king" in Latin), often called T. rex or colloquially T-Rex, is one of the most well-represented of the large theropods. Tyrannosaurus lived throughout what is now western North America, on what was then an island continent known as Laramidia.</string>
@@ -9,4 +9,12 @@
     <string name="article_string_7">A pickup truck or pickup is a light-duty truck having an enclosed cab and an open cargo area with low sides and tailgate.[1] In Australia and New Zealand, both pickups and coupé utilities are called utes, short for utility vehicle. </string>
     <string name="article_string_8">A pumpkin is a cultivar of winter squash that is round with smooth, slightly ribbed skin, and is most often deep yellow to orange in coloration.[1] The thick shell contains the seeds and pulp. The name is most commonly used for cultivars of Cucurbita pepo, but some cultivars of Cucurbita maxima, C. argyrosperma, and C. moschata with similar appearance are also sometimes called "pumpkin".</string>
     <string name="generate_badge">Generate badge</string>
+    <string name="article_short_title_1">Circle</string>
+    <string name="article_short_title_2">Apple</string>
+    <string name="article_short_title_3">Dino</string>
+    <string name="article_short_title_4">Snowman</string>
+    <string name="article_short_title_5">Camera</string>
+    <string name="article_short_title_6">Icecream</string>
+    <string name="article_short_title_7">Pickup</string>
+    <string name="article_short_title_8">Pumpkin</string>
 </resources>
