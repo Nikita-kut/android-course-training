@@ -96,8 +96,7 @@ class ViewpagerFragment : Fragment(R.layout.fragment_viewpager), ArticleFragment
     override fun onConfirmClick(selectedItems: ArrayList<String>) {
 
         filteredList = screens.filter { article ->
-            article.tags.map { tag -> tag.name }.intersect(selectedItems.toSet()).isNotEmpty()
-        } as MutableList<ArticleScreen>
+            article.tags.map { tag -> tag.name }.intersect(selectedItems.toSet()).isNotEmpty()} as MutableList<ArticleScreen>
 
 //        screens.forEachIndexed { index, article ->
 //            val tagsInside: Array<String> = article.tags.map { tag -> tag.name }.toTypedArray()
@@ -153,3 +152,4 @@ class ViewpagerFragment : Fragment(R.layout.fragment_viewpager), ArticleFragment
         }
     }
 }
+
