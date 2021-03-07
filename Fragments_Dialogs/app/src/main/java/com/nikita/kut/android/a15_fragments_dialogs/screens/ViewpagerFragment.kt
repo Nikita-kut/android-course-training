@@ -17,9 +17,7 @@ import kotlin.random.Random
 class ViewpagerFragment : Fragment(R.layout.fragment_viewpager), ArticleFragment.ClickListener,
     FilterTagsDialogFragment.ConfirmClickListener {
 
-    private val adapter by lazy {ArticleAdapter(this, screens)}
-    private val tagsAll = listOf(ArticleTag.ANIMALS, ArticleTag.FRUIT, ArticleTag.OTHER)
-    private val tagsToString: Array<String> = ArticleTag.values().map { it.name }.toTypedArray()
+    private val adapter by lazy { ArticleAdapter(this, screens) }
     private var tagsAllChecked = booleanArrayOf(true, true, true)
 
     private var screens: List<ArticleScreen> = listOf(
@@ -65,7 +63,6 @@ class ViewpagerFragment : Fragment(R.layout.fragment_viewpager), ArticleFragment
         ))
     )
 
-    val animals = ArticleTag.values().map {it.name }.toTypedArray()
     private var filteredList: MutableList<ArticleScreen> = mutableListOf()
     private val viewPager: ViewPager2 by lazy { requireView().findViewById(R.id.view_pager) }
     private val tabLayout: TabLayout by lazy { requireView().findViewById(R.id.tab_layout) }
@@ -98,10 +95,10 @@ class ViewpagerFragment : Fragment(R.layout.fragment_viewpager), ArticleFragment
 
     override fun onConfirmClick(selectedItems: ArrayList<String>) {
 
-        for (current in screens.indices) {
-            for (index in selectedItems.indices) {
-                if (tagsToString[current] == selectedItems[index]) {
-//                    filteredList.add(tagsToString[current])
+        screens.forEachIndexed { index, article ->
+            article.tags.map { tag ->
+                if (tag.name == selectedItems[index]) {
+                    filteredList.add(index, article)
                 }
             }
         }
