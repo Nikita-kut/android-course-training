@@ -21,7 +21,6 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
     private var _binding: FragmentArticleBinding? = null
     private val binding
         get() = _binding!!
-
     private val listener: ClickListener? by lazy { parentFragment as ClickListener }
 
     override fun onCreateView(
