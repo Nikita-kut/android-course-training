@@ -1,6 +1,9 @@
 package com.nikita.kut.android.a15_fragments_dialogs.screens
 
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
@@ -8,6 +11,7 @@ import com.google.android.material.badge.BadgeDrawable
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.nikita.kut.android.a15_fragments_dialogs.R
+import com.nikita.kut.android.a15_fragments_dialogs.databinding.FragmentViewpagerBinding
 import com.nikita.kut.android.a15_fragments_dialogs.model.ArticleScreen
 import com.nikita.kut.android.a15_fragments_dialogs.model.ArticleTag
 import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
@@ -17,9 +21,11 @@ import kotlin.random.Random
 class ViewpagerFragment : Fragment(R.layout.fragment_viewpager), ArticleFragment.ClickListener,
     FilterTagsDialogFragment.ConfirmClickListener {
 
+    private var _binding: FragmentViewpagerBinding? = null
+    private val binding: FragmentViewpagerBinding
+        get() = _binding!!
     private val adapter by lazy { ArticleAdapter(this, screens) }
     private var tagsAllChecked = booleanArrayOf(true, true, true)
-
     private var screens: List<ArticleScreen> = listOf(
         (ArticleScreen(
             drawableRes = R.drawable.ic_article_drawable_1,
@@ -62,26 +68,31 @@ class ViewpagerFragment : Fragment(R.layout.fragment_viewpager), ArticleFragment
             listOf(ArticleTag.FRUIT)
         ))
     )
-
     private var filteredList: MutableList<ArticleScreen> = mutableListOf()
-    private val viewPager: ViewPager2 by lazy { requireView().findViewById(R.id.view_pager) }
-    private val tabLayout: TabLayout by lazy { requireView().findViewById(R.id.tab_layout) }
-    private val toolbar: Toolbar by lazy { requireView().findViewById(R.id.toolbar) }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentViewpagerBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        viewPager.adapter = adapter
+        binding.viewPager.adapter = adapter
 
-        setDotsIndicator(viewPager)
+        setDotsIndicator(binding.viewPager)
 
-        setPageAnimation(viewPager)
+        setPageAnimation(binding.viewPager)
 
-        setTabLayout(viewPager)
+        setTabLayout(binding.viewPager)
 
         removeBadge()
 
-        toolbar.setOnMenuItemClickListener {
+        binding.toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.filter_tags -> {
                     FilterTagsDialogFragment.dialogFragmentNewInstance(tagsAllChecked)
@@ -93,10 +104,16 @@ class ViewpagerFragment : Fragment(R.layout.fragment_viewpager), ArticleFragment
         }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     override fun onConfirmClick(selectedItems: ArrayList<String>) {
 
         filteredList = screens.filter { article ->
-            article.tags.map { tag -> tag.name }.intersect(selectedItems.toSet()).isNotEmpty()} as MutableList<ArticleScreen>
+            article.tags.map { tag -> tag.name }.intersect(selectedItems.toSet()).isNotEmpty()
+        } as MutableList<ArticleScreen>
 
 //        screens.forEachIndexed { index, article ->
 //            val tagsInside: Array<String> = article.tags.map { tag -> tag.name }.toTypedArray()
@@ -122,7 +139,7 @@ class ViewpagerFragment : Fragment(R.layout.fragment_viewpager), ArticleFragment
     }
 
     private fun setTabLayout(viewPager: ViewPager2) {
-        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+        TabLayoutMediator(binding.tabLayout, viewPager) { tab, position ->
             when (position) {
                 0 -> tab.text = getString(R.string.article_short_title_1)
                 1 -> tab.text = getString(R.string.article_short_title_2)
@@ -137,16 +154,16 @@ class ViewpagerFragment : Fragment(R.layout.fragment_viewpager), ArticleFragment
     }
 
     private fun removeBadge() {
-        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+        binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                tabLayout.getTabAt(position)?.removeBadge()
+                binding.tabLayout.getTabAt(position)?.removeBadge()
             }
         })
     }
 
     override fun onGenerateBadgeButtonClick() {
-        tabLayout.getTabAt(Random.nextInt(screens.size))?.orCreateBadge?.apply {
+        binding.tabLayout.getTabAt(Random.nextInt(screens.size))?.orCreateBadge?.apply {
             badgeGravity = BadgeDrawable.TOP_END
             if (number == 0) number = 1 else number++
         }
