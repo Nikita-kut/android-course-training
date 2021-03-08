@@ -1,6 +1,7 @@
 package com.nikita.kut.android.a15_fragments_dialogs.screens
 
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,7 +27,7 @@ class ViewpagerFragment : Fragment(R.layout.fragment_viewpager), ArticleFragment
         get() = _binding!!
     private val adapter by lazy { ArticleAdapter(this, screens) }
     private var tagsAllChecked = booleanArrayOf(true, true, true)
-    private var screens: List<ArticleScreen> = listOf(
+    private var screens: ArrayList<ArticleScreen> = arrayListOf(
         (ArticleScreen(
             drawableRes = R.drawable.ic_article_drawable_1,
             stringRes = R.string.article_string_1,
@@ -68,7 +69,7 @@ class ViewpagerFragment : Fragment(R.layout.fragment_viewpager), ArticleFragment
             listOf(ArticleTag.FRUIT)
         ))
     )
-    private var filteredList: MutableList<ArticleScreen> = mutableListOf()
+    private var filteredList: ArrayList<ArticleScreen> = screens
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -104,6 +105,24 @@ class ViewpagerFragment : Fragment(R.layout.fragment_viewpager), ArticleFragment
         }
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putParcelableArrayList(KEY_FILTERED_LIST, filteredList)
+        outState.putBooleanArray(KEY_BOOLEAN_ARRAY, tagsAllChecked)
+        super.onSaveInstanceState(outState)
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        if (savedInstanceState != null) {
+            tagsAllChecked = savedInstanceState.getBooleanArray(KEY_BOOLEAN_ARRAY)
+                ?: error("boolean array state error")
+            filteredList =
+                savedInstanceState.getParcelableArrayList(KEY_FILTERED_LIST)
+                    ?: error("article array state error")
+            adapter.updateList(filteredList)
+        }
+        super.onViewStateRestored(savedInstanceState)
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
@@ -113,16 +132,8 @@ class ViewpagerFragment : Fragment(R.layout.fragment_viewpager), ArticleFragment
 
         filteredList = screens.filter { article ->
             article.tags.map { tag -> tag.name }.intersect(selectedItems.toSet()).isNotEmpty()
-        } as MutableList<ArticleScreen>
+        } as ArrayList<ArticleScreen>
 
-//        screens.forEachIndexed { index, article ->
-//            val tagsInside: Array<String> = article.tags.map { tag -> tag.name }.toTypedArray()
-//            for (currentTag in selectedItems.indices) {
-//                if (selectedItems[currentTag] == tagsInside[index]) {
-//                    filteredList.add(index, article)
-//                }
-//            }
-//        }
         adapter.updateList(filteredList)
     }
 
@@ -140,15 +151,23 @@ class ViewpagerFragment : Fragment(R.layout.fragment_viewpager), ArticleFragment
 
     private fun setTabLayout(viewPager: ViewPager2) {
         TabLayoutMediator(binding.tabLayout, viewPager) { tab, position ->
-            when (position) {
-                0 -> tab.text = getString(R.string.article_short_title_1)
-                1 -> tab.text = getString(R.string.article_short_title_2)
-                2 -> tab.text = getString(R.string.article_short_title_3)
-                3 -> tab.text = getString(R.string.article_short_title_4)
-                4 -> tab.text = getString(R.string.article_short_title_5)
-                5 -> tab.text = getString(R.string.article_short_title_6)
-                6 -> tab.text = getString(R.string.article_short_title_7)
-                7 -> tab.text = getString(R.string.article_short_title_8)
+            when (adapter.getItemId(position)) {
+                screens[0].stringRes.toLong() -> tab.text =
+                    getString(R.string.article_short_title_1)
+                screens[1].stringRes.toLong() -> tab.text =
+                    getString(R.string.article_short_title_2)
+                screens[2].stringRes.toLong() -> tab.text =
+                    getString(R.string.article_short_title_3)
+                screens[3].stringRes.toLong() -> tab.text =
+                    getString(R.string.article_short_title_4)
+                screens[4].stringRes.toLong() -> tab.text =
+                    getString(R.string.article_short_title_5)
+                screens[5].stringRes.toLong() -> tab.text =
+                    getString(R.string.article_short_title_6)
+                screens[6].stringRes.toLong() -> tab.text =
+                    getString(R.string.article_short_title_7)
+                screens[7].stringRes.toLong() -> tab.text =
+                    getString(R.string.article_short_title_8)
             }
         }.attach()
     }
@@ -167,6 +186,11 @@ class ViewpagerFragment : Fragment(R.layout.fragment_viewpager), ArticleFragment
             badgeGravity = BadgeDrawable.TOP_END
             if (number == 0) number = 1 else number++
         }
+    }
+
+    companion object {
+        private const val KEY_BOOLEAN_ARRAY = "key_boolean_array"
+        private const val KEY_FILTERED_LIST = "key_filtered_list"
     }
 }
 

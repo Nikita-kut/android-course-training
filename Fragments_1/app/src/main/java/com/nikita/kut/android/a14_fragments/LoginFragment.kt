@@ -125,11 +125,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                         R.anim.fade_in,
                         R.anim.slide_out
                     )?.apply {
-                            replace(
-                                R.id.fragment_container,
-                                MainFragment(),
-                                MainFragment.MAIN_FRAGMENT_TAG
-                            ).commit()
+                            replace(R.id.fragment_container, MainFragment(),MainFragment.MAIN_FRAGMENT_TAG)
+                                .commit()
                     }
             }, 2000)
         } else {

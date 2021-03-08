@@ -15,6 +15,11 @@ class ArticleAdapter(fragment: Fragment, private var screens: List<ArticleScreen
 
     override fun getItemCount(): Int = screens.size
 
+    override fun getItemId(position: Int): Long = screens[position].stringRes.toLong()
+
+    override fun containsItem(itemId: Long): Boolean =
+        screens.any { article -> article.stringRes.toLong() == itemId }
+
     override fun createFragment(position: Int): Fragment {
         val articleScreen = screens[position]
         return ArticleFragment.newInstance(
