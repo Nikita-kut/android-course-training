@@ -2,6 +2,7 @@ package com.nikita.kut.android.a15_fragments_dialogs.screens
 
 import android.os.Bundle
 import android.os.Parcelable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -71,11 +72,17 @@ class ViewpagerFragment : Fragment(R.layout.fragment_viewpager), ArticleFragment
     )
     private var filteredList: ArrayList<ArticleScreen> = screens
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        Log.d("viewpager", "on create")
+        super.onCreate(savedInstanceState)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        Log.d("viewpager", "on create view")
         _binding = FragmentViewpagerBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -105,6 +112,16 @@ class ViewpagerFragment : Fragment(R.layout.fragment_viewpager), ArticleFragment
         }
     }
 
+    override fun onPause() {
+        Log.d("viewpager", "on pause")
+        super.onPause()
+    }
+
+    override fun onStop() {
+        Log.d("viewpager", "on stop")
+        super.onStop()
+    }
+
     override fun onSaveInstanceState(outState: Bundle) {
         outState.putParcelableArrayList(KEY_FILTERED_LIST, filteredList)
         outState.putBooleanArray(KEY_BOOLEAN_ARRAY, tagsAllChecked)
@@ -124,8 +141,14 @@ class ViewpagerFragment : Fragment(R.layout.fragment_viewpager), ArticleFragment
     }
 
     override fun onDestroyView() {
+        Log.d("viewpager", "on destroy view")
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onDestroy() {
+        Log.d("viewpager", "on destroy")
+        super.onDestroy()
     }
 
     override fun onConfirmClick(selectedItems: ArrayList<String>) {

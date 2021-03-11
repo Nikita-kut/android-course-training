@@ -18,4 +18,8 @@ class AppActivity: AppCompatActivity(R.layout.activity_main) {
         }
 
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+    }
 }

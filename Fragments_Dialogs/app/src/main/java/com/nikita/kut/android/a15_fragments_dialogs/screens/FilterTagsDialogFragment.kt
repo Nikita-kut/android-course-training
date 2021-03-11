@@ -14,7 +14,7 @@ class FilterTagsDialogFragment : DialogFragment() {
 
         val tagsToString: Array<String> = ArticleTag.values().map { it.name }.toTypedArray()
         val selectedTagsString: ArrayList<String> = arrayListOf()
-        val booleanTags = arguments?.getBooleanArray(KEY_TAGS)
+        val booleanTags: BooleanArray? = arguments?.getBooleanArray(KEY_TAGS)
 
         return AlertDialog.Builder(requireContext())
             .setTitle("Article filter")

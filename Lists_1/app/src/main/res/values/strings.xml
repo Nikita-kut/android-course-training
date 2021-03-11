@@ -1,3 +1,54 @@
 <resources>
-    <string name="app_name">16_lists_1</string>
+    <string name="app_name">Withcer persons</string>
+    <string name="name">Name</string>
+    <string name="age">Age</string>
+    <string name="create_witcher">Create witcher</string>
+    <string name="gender">Gender</string>
+    <string name="man">Man</string>
+    <string name="woman">Woman</string>
+    <string name="witcher_school">Witcher school</string>
+    <string name="color">Color</string>
+    <string name="create_wild_hunt">Create wild hunt</string>
+    <string name="create_monster">Create monster</string>
+    <string name="monster_size">Monster size</string>
+    <string name="kind">Kind</string>
+    <string name="list_empty">The list is empty. Please add some items</string>
+
+    <string-array name="gender">
+        <item>Man</item>
+        <item>Woman</item>
+    </string-array>
+
+    <string-array name="witcher_school">
+        <item>Wolf</item>
+        <item>Griffin</item>
+        <item>Cat</item>
+        <item>Snake</item>
+        <item>Bear</item>
+    </string-array>
+
+    <string-array name="wild_hunt_color">
+        <item>Black</item>
+        <item>Red</item>
+        <item>Green</item>
+        <item>White</item>
+        <item>Grey</item>
+    </string-array>
+
+    <string-array name="monster_kind">
+        <item>Animal</item>
+        <item>Necrophage</item>
+        <item>Specter</item>
+        <item>Beast</item>
+        <item>Cursed One</item>
+        <item>Hybrid</item>
+        <item>Insectoid</item>
+    </string-array>
+
+    <string-array name="monster_size">
+        <item>Great</item>
+        <item>Big</item>
+        <item>Middle</item>
+        <item>Small</item>
+    </string-array>
 </resources>
