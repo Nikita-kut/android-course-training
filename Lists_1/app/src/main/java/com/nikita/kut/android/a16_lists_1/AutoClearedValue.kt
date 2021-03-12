@@ -19,7 +19,6 @@ class AutoClearedValue<T : Any> : ReadWriteProperty<Fragment, T>, LifecycleObser
         _value = value
         thisRef.viewLifecycleOwner.lifecycle.addObserver(this)
     }
-
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     fun onDestroy() {
         _value = null
