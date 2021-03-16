@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/iv_witcher_avatar"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/tv_name_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="sans-serif"
+        android:text="Name:"
+        android:textFontWeight="900"
+        app:layout_constraintBottom_toTopOf="@+id/tv_age_title"
+        app:layout_constraintStart_toEndOf="@id/iv_witcher_avatar"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_witcher_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:fontFamily="sans-serif"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_witcher_age"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@id/tv_name_title"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@tools:sample/full_names" />
+
+    <TextView
+        android:id="@+id/tv_age_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:text="Age:"
+        android:textFontWeight="900"
+        app:layout_constraintBottom_toTopOf="@+id/tv_gender_title"
+        app:layout_constraintStart_toStartOf="@id/tv_name_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name_title" />
+
+    <TextView
+        android:id="@+id/tv_witcher_age"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_witcher_gender"
+        app:layout_constraintEnd_toEndOf="@id/tv_witcher_name"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@id/tv_witcher_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_witcher_name"
+        tools:text="18" />
+
+    <TextView
+        android:id="@+id/tv_gender_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:text="Gender:"
+        android:textFontWeight="900"
+        app:layout_constraintBottom_toTopOf="@+id/tv_school_title"
+        app:layout_constraintStart_toStartOf="@id/tv_name_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_age_title" />
+
+    <TextView
+        android:id="@+id/tv_witcher_gender"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_witcher_school"
+        app:layout_constraintEnd_toEndOf="@id/tv_witcher_name"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@id/tv_witcher_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_witcher_age"
+        tools:text="Man" />
+
+    <TextView
+        android:id="@+id/tv_school_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:text="School:"
+        android:textFontWeight="900"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tv_name_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_gender_title" />
+
+    <TextView
+        android:id="@+id/tv_witcher_school"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/tv_witcher_name"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@id/tv_witcher_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_witcher_gender"
+        tools:text="Wolf" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

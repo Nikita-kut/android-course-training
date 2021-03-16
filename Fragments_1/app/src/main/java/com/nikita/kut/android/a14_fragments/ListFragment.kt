@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
 
@@ -23,9 +24,10 @@ class ListFragment : Fragment(R.layout.fragment_list) {
         super.onViewCreated(view, savedInstanceState)
         setViews()
 
-        view.let { it as ViewGroup }
+        view.let {
+            it as ViewGroup }
             .children
-            .mapNotNull { it as? Button }
+            .mapNotNull { it as? ImageButton }
             .forEach { button ->
                 button.setOnClickListener {
                     (parentFragment as ClickListener).onCardClick(getEtText())

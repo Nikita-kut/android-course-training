@@ -77,11 +77,6 @@ class WitcherPersonAdapter(
         onCardClicked: (position: Int) -> Unit
     ) : RecyclerView.ViewHolder(view) {
         private val binding = ItemWitcherBinding.bind(view)
-        private val ivAvatar = binding.ivWitcherAvatar
-        private val tvName = binding.tvWitcherName
-        private val tvAge = binding.tvWitcherAge
-        private val tvGender = binding.tvWitcherGender
-        private val tvSchool = binding.tvWitcherSchool
         private val context = view.context
 
         init {
@@ -97,18 +92,18 @@ class WitcherPersonAdapter(
                     load(witcherPerson.avatarLink)
                         .placeholder(R.drawable.ic_portrait)
                         .dontAnimate()
-                        .into(ivAvatar)
+                        .into(binding.ivWitcherAvatar)
                 } else {
                     load("")
                         .placeholder(R.drawable.ic_no_internet)
                         .dontAnimate()
-                        .into(ivAvatar)
+                        .into(binding.ivWitcherAvatar)
                 }
             }
-            tvName.text = witcherPerson.name
-            tvAge.text = witcherPerson.age.toString()
-            tvGender.text = witcherPerson.gender
-            tvSchool.text = witcherPerson.school
+            binding.tvWitcherName.text = witcherPerson.name
+            binding.tvWitcherAge.text = witcherPerson.age.toString()
+            binding.tvWitcherGender.text = witcherPerson.gender
+            binding.tvWitcherSchool.text = witcherPerson.school
         }
     }
 
@@ -117,10 +112,6 @@ class WitcherPersonAdapter(
         onCardClicked: (position: Int) -> Unit
     ) : RecyclerView.ViewHolder(view) {
         private val binding = ItemWildHuntBinding.bind(view)
-
-        private val ivAvatar = binding.ivWildHuntAvatar
-        private val tvName = binding.tvWildHuntName
-        private val tvColor = binding.tvWildHuntColor
         private val context = view.context
 
         init {
@@ -136,16 +127,16 @@ class WitcherPersonAdapter(
                     load(wildHuntPerson.avatarLink)
                         .placeholder(R.drawable.ic_portrait)
                         .dontAnimate()
-                        .into(ivAvatar)
+                        .into(binding.ivWildHuntAvatar)
                 } else {
                     load("")
                         .placeholder(R.drawable.ic_no_internet)
                         .dontAnimate()
-                        .into(ivAvatar)
+                        .into(binding.ivWildHuntAvatar)
                 }
             }
-            tvName.text = wildHuntPerson.name
-            tvColor.text = wildHuntPerson.color
+            binding.tvWildHuntName.text = wildHuntPerson.name
+            binding.tvWildHuntColor.text = wildHuntPerson.color
         }
     }
 
@@ -154,11 +145,6 @@ class WitcherPersonAdapter(
         onCardClicked: (position: Int) -> Unit
     ) : RecyclerView.ViewHolder(view) {
         private val binding = ItemMonsterBinding.bind(view)
-
-        private val ivAvatar = binding.ivMonstersAvatar
-        private val tvName = binding.tvMonsterName
-        private val tvKind = binding.tvMonsterKind
-        private val tvSize = binding.tvMonsterSize
         private val context = view.context
 
         init {
@@ -174,17 +160,17 @@ class WitcherPersonAdapter(
                     load(monsterPerson.avatarLink)
                         .placeholder(R.drawable.ic_portrait)
                         .dontAnimate()
-                        .into(ivAvatar)
+                        .into(binding.ivMonstersAvatar)
                 } else {
                     load("")
                         .placeholder(R.drawable.ic_no_internet)
                         .dontAnimate()
-                        .into(ivAvatar)
+                        .into(binding.ivMonstersAvatar)
                 }
             }
-            tvName.text = monsterPerson.name
-            tvKind.text = monsterPerson.kind
-            tvSize.text = monsterPerson.size
+            binding.tvMonsterName.text = monsterPerson.name
+            binding.tvMonsterKind.text = monsterPerson.kind
+            binding.tvMonsterSize.text = monsterPerson.size
         }
     }
 

@@ -1,4 +1,4 @@
-package com.nikita.kut.android.a16_lists_1
+package com.nikita.kut.android.a17_lists_2_home
 
 import android.app.AlertDialog
 import android.app.Dialog
@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.fragment.app.DialogFragment
+import com.nikita.kut.android.a17_lists_2_home.data.WitcherPerson
+import kotlin.random.Random
 
 
 class ChoicePersonsDialogFragment : DialogFragment() {
@@ -28,17 +30,16 @@ class ChoicePersonsDialogFragment : DialogFragment() {
     private lateinit var colorSpinner: Spinner
     private lateinit var kindSpinner: Spinner
     private lateinit var sizeSpinner: Spinner
-    private var gender = ""
-    private var school = ""
-    private var color = ""
-    private var kind = ""
-    private var size = ""
+    private lateinit var gender: String
+    private lateinit var school: String
+    private lateinit var color: String
+    private lateinit var kind: String
+    private lateinit var size: String
     private lateinit var witcherAvatars: ArrayList<String>
     private lateinit var wildHuntAvatars: ArrayList<String>
     private lateinit var monsterAvatars: ArrayList<String>
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-
         setWitcherViews()
         setWitcherAdapters()
         getWitcherSpinnerItems()
@@ -65,6 +66,7 @@ class ChoicePersonsDialogFragment : DialogFragment() {
                             .setPositiveButton("Create") { _, _ ->
                                 val witcher =
                                     WitcherPerson.Witchers(
+                                        id = Random.nextLong(),
                                         name = etWitcherName.text.toString(),
                                         age = etWitcherAge.text.toString().toIntOrNull() ?: 0,
                                         gender = gender,
@@ -82,6 +84,7 @@ class ChoicePersonsDialogFragment : DialogFragment() {
                             .setPositiveButton("Create") { _, _ ->
                                 val wildHunt =
                                     WitcherPerson.WildHunt(
+                                        id = Random.nextLong(),
                                         name = etWildHuntName.text.toString(),
                                         color = color,
                                         avatarLink = wildHuntAvatars.random()
@@ -97,6 +100,7 @@ class ChoicePersonsDialogFragment : DialogFragment() {
                             .setPositiveButton("Create") { _, _ ->
                                 val monster =
                                     WitcherPerson.Monsters(
+                                        id = Random.nextLong(),
                                         name = etMonsterName.text.toString(),
                                         kind = kind,
                                         size = size,
@@ -163,7 +167,7 @@ class ChoicePersonsDialogFragment : DialogFragment() {
 
     private fun setWitcherAdapters() {
         genderAdapter = ArrayAdapter.createFromResource(
-            requireContext(),
+            witcherFragmentView.context,
             R.array.gender,
             android.R.layout.simple_spinner_item
         )
@@ -171,7 +175,7 @@ class ChoicePersonsDialogFragment : DialogFragment() {
         genderSpinner.adapter = genderAdapter
 
         schoolAdapter = ArrayAdapter.createFromResource(
-            requireContext(),
+            witcherFragmentView.context,
             R.array.witcher_school,
             android.R.layout.simple_spinner_item
         )
@@ -181,7 +185,7 @@ class ChoicePersonsDialogFragment : DialogFragment() {
 
     private fun setWildHuntAdapter() {
         colorAdapter = ArrayAdapter.createFromResource(
-            requireContext(),
+            wildHuntFragmentView.context,
             R.array.wild_hunt_color,
             android.R.layout.simple_spinner_item
         )
@@ -191,7 +195,7 @@ class ChoicePersonsDialogFragment : DialogFragment() {
 
     private fun setMonsterAdapters() {
         kindAdapter = ArrayAdapter.createFromResource(
-            requireContext(),
+            monsterFragmentView.context,
             R.array.monster_kind,
             android.R.layout.simple_spinner_item
         )
