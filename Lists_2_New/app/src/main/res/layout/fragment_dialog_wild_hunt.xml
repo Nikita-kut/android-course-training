@@ -12,13 +12,13 @@
         android:gravity="center"
         android:text="@string/create_wild_hunt"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@id/et_monster_name"
+        app:layout_constraintBottom_toTopOf="@id/et_wd_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/et_monster_name"
+        android:id="@+id/et_wd_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
@@ -35,11 +35,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/color"
-        app:layout_constraintStart_toStartOf="@id/et_monster_name"
-        app:layout_constraintTop_toBottomOf="@id/et_monster_name" />
+        app:layout_constraintStart_toStartOf="@id/et_wd_name"
+        app:layout_constraintTop_toBottomOf="@id/et_wd_name" />
 
     <Spinner
-        android:id="@+id/spinner_color"
+        android:id="@+id/spnr_color"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"

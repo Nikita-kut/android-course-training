@@ -12,13 +12,13 @@
         android:gravity="center"
         android:text="@string/create_witcher"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@id/et_monster_name"
+        app:layout_constraintBottom_toTopOf="@id/et_witch_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/et_monster_name"
+        android:id="@+id/et_witch_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
@@ -37,9 +37,9 @@
         android:hint="@string/age"
         android:inputType="number"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@id/et_monster_name"
-        app:layout_constraintStart_toStartOf="@id/et_monster_name"
-        app:layout_constraintTop_toBottomOf="@id/et_monster_name" />
+        app:layout_constraintEnd_toEndOf="@id/et_witch_name"
+        app:layout_constraintStart_toStartOf="@id/et_witch_name"
+        app:layout_constraintTop_toBottomOf="@id/et_witch_name" />
 
     <TextView
         android:id="@+id/tv_size_title"
@@ -51,7 +51,7 @@
         app:layout_constraintTop_toBottomOf="@id/et_witcher_age" />
 
     <Spinner
-        android:id="@+id/spinner_gender"
+        android:id="@+id/spnr_gender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -65,11 +65,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/witcher_school"
-        app:layout_constraintStart_toStartOf="@id/spinner_gender"
-        app:layout_constraintTop_toBottomOf="@id/spinner_gender" />
+        app:layout_constraintStart_toStartOf="@id/spnr_gender"
+        app:layout_constraintTop_toBottomOf="@id/spnr_gender" />
 
     <Spinner
-        android:id="@+id/spinner_witcher_school"
+        android:id="@+id/spnr_school"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"

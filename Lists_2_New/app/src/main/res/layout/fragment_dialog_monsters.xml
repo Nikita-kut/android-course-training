@@ -39,7 +39,7 @@
         app:layout_constraintTop_toBottomOf="@id/et_monster_name" />
 
     <Spinner
-        android:id="@+id/spinner_kind"
+        android:id="@+id/spnr_kind"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -53,11 +53,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/monster_size"
-        app:layout_constraintStart_toStartOf="@id/spinner_kind"
-        app:layout_constraintTop_toBottomOf="@id/spinner_kind" />
+        app:layout_constraintStart_toStartOf="@id/spnr_kind"
+        app:layout_constraintTop_toBottomOf="@id/spnr_kind" />
 
     <Spinner
-        android:id="@+id/spinner_monster_size"
+        android:id="@+id/spnr_size"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
