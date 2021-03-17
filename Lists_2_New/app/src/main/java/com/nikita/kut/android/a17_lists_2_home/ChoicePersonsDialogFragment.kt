@@ -149,7 +149,7 @@ class ChoicePersonsDialogFragment : DialogFragment() {
                         witchBinding.spnrSchool -> school = parent?.getItemAtPosition(position).toString()
                         wdBinding.spnrColor -> color = parent?.getItemAtPosition(position).toString()
                         monstBinding.spnrSize -> size = parent?.getItemAtPosition(position).toString()
-                        monstBinding.spnrSize -> kind = parent?.getItemAtPosition(position).toString()
+                        monstBinding.spnrKind -> kind = parent?.getItemAtPosition(position).toString()
                     }
                 }
                 override fun onNothingSelected(parent: AdapterView<*>?) {}
