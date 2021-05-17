@@ -40,6 +40,7 @@ class LocationListFragment : Fragment() {
         binding.btnGetLocation.setOnClickListener {
             initDatasetInstant()
             dataset.add(datasetInstant)
+
             hideHelpTextview()
             datasetAdapter?.submitList(dataset)
         }
