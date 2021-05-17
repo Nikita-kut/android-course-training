@@ -38,6 +38,7 @@ class ListFragment : Fragment(), ChoicePersonsDialogFragment.ClickListener {
         super.onActivityCreated(savedInstanceState)
         initList()
         binding.fab.setOnClickListener { addPersonToList() }
+        witcherPersons.take(5)
     }
 
     override fun onCreateClick(witcherPerson: WitcherPerson) {

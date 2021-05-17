@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">18_PermissionsAndDate</string>
+    <string name="allow">Разрешить</string>
+    <string name="get_location">Получить локацию</string>
+    <string name="no_location">Нет локаций доступных для отображения</string>
+    <string name="need_permission">Для отображения списка локаций необходимо разрешение</string>
+    <string name="need_permission_for_next_work">Для продолжения работы необходимо разрешение на доступ к локации</string>
 </resources>
