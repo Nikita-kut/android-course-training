@@ -9,4 +9,5 @@ class DatasetDiffUtilCallback : DiffUtil.ItemCallback<LocationData>() {
 
     override fun areContentsTheSame(oldItem: LocationData, newItem: LocationData): Boolean =
         oldItem == newItem
+
 }
